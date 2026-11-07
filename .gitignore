@@ -1,0 +1,16 @@
+# 派生大文件不入库（与父仓库 MyAgents 口径一致）
+*.pdf
+*.txt
+*.xml
+*.mgf
+*.log
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+downloads/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+Thumbs.db
