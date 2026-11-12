@@ -1,9 +1,9 @@
 {
-  "repo": "https://github.com/caiqfox821/MyAgents-food-safety",
+  "repo": "https://github.com/jing123rui-cpu/MyAgents-food-safety",
   "branch": "main",
   "mode": "pull-only",
-  "status": "pending-remote",
+  "status": "syncing",
   "agent": "food-safety-expert",
-  "notes": "远端仓库在 2026-11-12 检查时为 404（账号 caiqfox821 公开仓库数为 0），待仓库创建后执行 scripts/sync.ps1 -Pull",
+  "notes": "首次推送：本地 3 次提交合入远端 main",
   "synced_at": null
 }

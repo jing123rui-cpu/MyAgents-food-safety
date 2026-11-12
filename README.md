@@ -60,7 +60,7 @@ python -m api.server                  # Web/API（见 audit/docs）
 
 ## 同步
 
-上游：`https://github.com/caiqfox821/MyAgents-food-safety`（`main`）
+上游：`https://github.com/jing123rui-cpu/MyAgents-food-safety`（`main`）
 
 ```powershell
 .\scripts\sync.ps1 -Status
