@@ -14,16 +14,21 @@
 ```
 MyAgents/
 ├── AGENTS.md                                # 仓库级约定（结构、命令、边界）
-├── .opencode/agent/food-safety-expert.md    # 食品安全专家 Agent（primary）
-├── skills/food-safety-audit/                # 技能包：方法论 + 能力说明 + 索引
-│   ├── SKILL.md                             # 总入口（路径 A 检查前 / 路径 B 检查后）
-│   ├── workflows/01~06                      # 六步检查前分析
-│   ├── capabilities/                        # 8 项引擎能力 + 语义检索（checkpoint-match … semantic-search）
-│   └── references/
-│       ├── knowledge-index.md               # 45 检查点 / 45 规则 / 12 法规 / 分类树（自动生成）
-│       ├── audit-cli.md                     # 引擎命令行用法
-│       ├── 检查要点14项.md · 食品类别目录.md
-│       └── risk-grading.md · report-template.md
+├── .opencode/
+│   ├── agent/food-safety-expert.md          # 专家 Agent A（检查/审核引擎版，primary）
+│   ├── agent/food-safety.md                 # 专家 Agent B（风险评估版，由 agent.md 同步）
+│   └── opencode.jsonc                       # 挂载 ./skills 与 references/
+├── agent.md                                 # 上游食品安全专家定义（caiqfox821 仓库）
+├── references/                              # 食品安全参考资料（限量/危害/评估/HACCP/国际机构）
+├── templates/                               # 食品安全文档与表单模板
+├── skills/
+│   ├── food-safety-audit/                   # 技能包 A：方法论 + 引擎能力 + 索引
+│   │   ├── SKILL.md                         # 总入口（路径 A 检查前 / 路径 B 检查后）
+│   │   ├── workflows/01~06                  # 六步检查前分析
+│   │   ├── capabilities/                    # 8 项引擎能力 + 语义检索
+│   │   └── references/                      # 知识索引、CLI、风险分级、报告模板
+│   └── food-safety/                         # 技能包 B：风险评估四步法（caiqfox821 仓库）
+│       └── SKILL.md
 ├── audit/                                   # 食品安全审核引擎（迁移自 Food-Audit-Agent）
 │   ├── main.py                              # CLI 入口（health / inspect / search / index / rag-status）
 │   ├── script/                              # 检索、规则引擎、工作流、AI、报告导出、RAG
@@ -34,7 +39,7 @@ MyAgents/
 │   ├── docs/ · reports/ · tests/
 │   └── pyproject.toml · requirements.txt
 ├── scripts/
-│   ├── sync.ps1                             # 拉取 / 安装 / 状态
+│   ├── sync.ps1                             # 拉取 / 提交推送 / 安装 / 状态
 │   └── gen_knowledge_index.py               # 由知识库重新生成 knowledge-index.md
 ├── .upstream.json                           # 上游记录（不含凭据）
 └── .gitignore
@@ -58,7 +63,14 @@ MyAgents/
 
 ### 1. Agent
 
-在 OpenCode 中打开本目录，选择 `food-safety-expert`；或安装到全局：
+在 OpenCode 中打开本目录，两个专家并存：
+
+| Agent | 定位 | 技能 |
+|---|---|---|
+| `food-safety-expert` | 企业合规审查：检查前分析、问题定性、整改、报告 | `food-safety-audit`（引擎 + 知识库） |
+| `food-safety` | 风险评估：危害识别、暴露评估、风险表征与排序 | `food-safety`（四步法 + `references/` 资料库） |
+
+`.opencode/opencode.jsonc` 已挂载根目录 `skills/` 与 `references/`，打开本目录即可用。安装到全局：
 
 ```powershell
 .\scripts\sync.ps1 -Install
@@ -68,6 +80,7 @@ MyAgents/
 - 「按 GB 14881 审一下这份车间巡检记录」
 - 「饮料菌落总数超标，定性、分级、写整改要求」
 - 「小型食用油厂日常监督检查，先给检查前分析清单」
+- 「对这组农残检出数据做暴露评估和风险排序」
 
 ### 2. 引擎
 
@@ -123,6 +136,19 @@ Get-Content $env:USERPROFILE\.ssh\id_ed25519_myagents.pub
 然后把输出的公钥添加到 **https://github.com/settings/ssh/new**。若仍使用 HTTPS 远端，可传 `-Token $env:GITHUB_TOKEN` 走临时认证；token 不写入 `.git/config`。
 
 `-Pull` 使用 `--ff-only`：只做快进合并，本地有改动时显式失败，不静默覆盖。
+
+### 第二上游（风险评估专家包）
+
+`agent.md`、`references/`、`skills/food-safety/`、`templates/` 来自
+`https://github.com/caiqfox821/MyAgents-food-safety`，以 `caiq` 远程接入（仅拉取，不向该仓库推送）：
+
+```powershell
+git fetch caiq main
+git merge caiq/main                      # 历史已合并，后续可直接 merge
+Copy-Item agent.md .opencode\agent\food-safety.md -Force   # 同步为可发现的 Agent
+```
+
+`.opencode/agent/food-safety.md` 是 `agent.md` 的副本，供 OpenCode 直接发现；改内容请改 `agent.md` 后重新复制。
 
 ## 迁移说明
 

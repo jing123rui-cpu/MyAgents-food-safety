@@ -6,7 +6,13 @@
 
 | 位置 | 作用 |
 |---|---|
-| `.opencode/agent/food-safety-expert.md` | 食品安全专家 Agent（primary），人格、边界、工作方法 |
+| `.opencode/agent/food-safety-expert.md` | 食品安全专家 Agent A：企业合规审查（primary） |
+| `.opencode/agent/food-safety.md` | 食品安全专家 Agent B：风险评估（由根目录 `agent.md` 同步） |
+| `.opencode/opencode.jsonc` | 挂载 `./skills` 与 `references/` |
+| `agent.md` | 上游 Agent B 定义（caiqfox821 仓库）；改这里后复制到 `.opencode/agent/food-safety.md` |
+| `references/` | 食品安全参考资料：限量法规、化学/生物危害、风险评估、检测与 HACCP、国际机构 |
+| `templates/` | 食品安全报告与表单模板 |
+| `skills/food-safety/SKILL.md` | 技能包 B：风险评估四步法 |
 | `skills/food-safety-audit/SKILL.md` | 技能包总入口：路径 A 检查前 / 路径 B 检查后 |
 | `skills/food-safety-audit/workflows/01~06` | 检查前六步方法论 |
 | `skills/food-safety-audit/capabilities/` | 8 项引擎能力 + 语义检索说明 |
@@ -55,6 +61,14 @@ cd audit; python main.py index
 ```
 
 `origin` 使用 SSH（`git@github.com:...`），配置一次后不需要 PAT。`-Push` 会 `git add -A` 后提交，提交前会打印待提交清单；`.gitignore` 已排除密钥、虚拟环境与本地索引。
+
+第二上游 `caiq`（`caiqfox821/MyAgents-food-safety`，仅拉取）：
+
+```powershell
+git fetch caiq main
+git merge caiq/main
+Copy-Item agent.md .opencode\agent\food-safety.md -Force
+```
 
 ## 改动纪律
 
