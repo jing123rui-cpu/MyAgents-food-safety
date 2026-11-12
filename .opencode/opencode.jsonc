@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // 根目录 skills/ 下的技能（food-safety-audit、food-safety）
+  "skills": ["./skills"],
+
+  // 食品安全专家参考资料库（agent.md 中提到的 references/）
+  "references": {
+    "food-safety": {
+      "path": "../references",
+      "description": "食品安全专家参考资料：限量标准与法规、化学/生物危害、风险评估方法、检测监测与 HACCP、国际机构与数据库"
+    }
+  }
+}
