@@ -5,5 +5,5 @@
     "status":  "synced",
     "agent":  "food-safety-expert",
     "notes":  "SSH 认证（ed25519），支持 sync.ps1 -Pull / -Push",
-    "synced_at":  "2026-11-12T11:36:23+08:00"
+    "synced_at":  "2026-11-12T14:32:42+08:00"
 }

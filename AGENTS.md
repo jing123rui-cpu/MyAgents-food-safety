@@ -45,6 +45,17 @@ cd audit; python main.py index
 6. **索引不入库**：`audit/.index/` 是本地生成物，不提交；换机器后跑一次 `python main.py index` 重建。
 7. **Windows 编码**：中文参数可能被 PowerShell 转码，优先用 `--id` 或英文关键词；必要时 `$env:PYTHONIOENCODING="utf-8"`。
 
+## 同步
+
+```powershell
+.\scripts\sync.ps1 -Pull                       # 拉取（--ff-only）
+.\scripts\sync.ps1 -Push                       # 提交所有改动并推送
+.\scripts\sync.ps1 -Push -Message "feat: ..."  # 指定提交信息
+.\scripts\sync.ps1 -Status                     # 状态与远端
+```
+
+`origin` 使用 SSH（`git@github.com:...`），配置一次后不需要 PAT。`-Push` 会 `git add -A` 后提交，提交前会打印待提交清单；`.gitignore` 已排除密钥、虚拟环境与本地索引。
+
 ## 改动纪律
 
 - 新增检查点/规则时沿用 `audit/knowledge/checkpoints/CHECKPOINT_SCHEMA_V2.md` 的 16 节结构与 `RR-{检查点ID}.yaml` 命名，并同步 `audit/knowledge/registry/` 与分类树，否则 `health` 会告警。

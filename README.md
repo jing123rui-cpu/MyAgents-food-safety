@@ -105,12 +105,24 @@ python main.py index
 上游：`https://github.com/jing123rui-cpu/MyAgents-food-safety`（`main`）
 
 ```powershell
-.\scripts\sync.ps1 -Status
-.\scripts\sync.ps1 -Pull                  # 公开仓库
-$env:GITHUB_TOKEN = "github_pat_xxx"; .\scripts\sync.ps1 -Pull -Token $env:GITHUB_TOKEN
+.\scripts\sync.ps1 -Status                 # 状态与远端
+.\scripts\sync.ps1 -Pull                   # 拉取（--ff-only，本地有改动时显式失败）
+.\scripts\sync.ps1 -Push                   # 提交所有改动并推送（自动生成提交信息）
+.\scripts\sync.ps1 -Push -Message "feat: 新增检查点"
+.\scripts\sync.ps1 -Pull -Push             # 先拉后推
 ```
 
-`--ff-only`：只做快进合并，本地有改动时显式失败，不静默覆盖。
+认证使用 **SSH 密钥**（`origin` 为 `git@github.com:...`），配置一次后不再需要 PAT。新机器上生成密钥并把公钥加到 GitHub：
+
+```powershell
+ssh-keygen -t ed25519 -f $env:USERPROFILE\.ssh\id_ed25519_myagents -C "myagents-sync"
+# 提示 passphrase 时直接回车两次（空口令，便于自动同步）
+Get-Content $env:USERPROFILE\.ssh\id_ed25519_myagents.pub
+```
+
+然后把输出的公钥添加到 **https://github.com/settings/ssh/new**。若仍使用 HTTPS 远端，可传 `-Token $env:GITHUB_TOKEN` 走临时认证；token 不写入 `.git/config`。
+
+`-Pull` 使用 `--ff-only`：只做快进合并，本地有改动时显式失败，不静默覆盖。
 
 ## 迁移说明
 
