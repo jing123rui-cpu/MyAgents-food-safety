@@ -13,6 +13,7 @@
 
 ```
 MyAgents/
+├── AGENTS.md                                # 仓库级约定（结构、命令、边界）
 ├── .opencode/agent/food-safety-expert.md    # 食品安全专家 Agent（primary）
 ├── skills/food-safety-audit/                # 技能包：方法论 + 能力说明 + 索引
 │   ├── SKILL.md                             # 总入口（路径 A 检查前 / 路径 B 检查后）
