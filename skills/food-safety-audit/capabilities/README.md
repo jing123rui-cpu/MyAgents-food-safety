@@ -1,0 +1,36 @@
+# 能力矩阵（引擎侧技能）
+
+这 8 项来自 `audit/` 引擎的技能定义（`audit/skills/*/skill.yaml`），是**可执行的结构化能力**；`workflows/01~06` 是**人工分析方法论**。两者配合使用：方法论决定「查什么、为什么查」，引擎能力负责「匹配、判定、汇总、导出」。
+
+| # | 能力 | 状态 | 作用 | 主要引擎 |
+|---|---|---|---|---|
+| 1 | [检查点匹配](checkpoint-match.md) | 已实现 | 把自由描述的现场发现映射到结构化检查点 | `InspectionPipeline`、`search.py`、registry |
+| 2 | [法规检索](regulation-lookup.md) | 已实现 | 按企业类型与检查点取适用法规条目 | `regulation_loader.py` |
+| 3 | [风险评估](risk-assessment.md) | 已实现 | 按风险规则判定符合/不符合/不适用 | `rule_engine.py` |
+| 4 | [检查编排](inspection-review.md) | 已实现 | 串起检索→上下文→提示词→AI 的完整流程 | `InspectionPipeline` |
+| 5 | [企业评价](enterprise-evaluation.md) | 已实现 | 汇总单项结果为企业级结论 | `models.py::EnterpriseEvaluation` |
+| 6 | [整改建议](corrective-action.md) | 已实现 | 为不符合项生成整改要求 | `writing_engine.py` |
+| 7 | [报告生成](report-generation.md) | 已实现 | 生成 12 节监管格式 Word 报告 | `writing_engine.py`、`report_exporter.py` |
+| 8 | [图像识别](image-recognition.md) | 规划中 | 照片/扫描件 OCR 与场景分类 | 无 |
+
+## 与 6 步方法论的对位
+
+```
+workflows/01 企业信息 ──┐
+workflows/02 类别识别 ──┼─→ 能力1 检查点匹配 ─→ 能力2 法规检索 ─→ 能力3 风险评估
+workflows/03 工艺风险 ──┤                                        │
+workflows/04 法规匹配 ──┘                                        ├─→ 能力5 企业评价
+                                                                 ├─→ 能力6 整改建议
+workflows/05 历史风险 ─────────────────────────────────────────→ 能力7 报告生成
+workflows/06 检查重点 ─────────────────────────────────────────→ 输出检查前清单
+```
+
+- **检查前**（进场前）：`workflows/01~06` 主导，能力 1、2、3 用于把结论落到具体检查点与条款。
+- **检查中/后**（有证据）：能力 1→2→3→5→6→7 主导，方法论用于解释与补漏。
+
+## 使用原则
+
+1. **能查就不猜**：检查点、条款、判定逻辑都先读 `audit/knowledge/`，再作答。
+2. **规则是辅助不是结论**：`rule_engine` 输出的是判定建议，最终定性仍要人工确认，尤其涉及重大风险。
+3. **离线可用**：能力 1、2、3、5 为确定性逻辑，不依赖 API；能力 6、7 的 AI 部分可降级为模板文本。
+4. **覆盖范围有限**：结构化知识目前只覆盖饮料（原料管理 25 + 生产过程 20），其他类别走方法论推导。

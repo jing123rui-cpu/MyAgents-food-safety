@@ -14,22 +14,42 @@
 ```
 MyAgents/
 ├── .opencode/agent/food-safety-expert.md    # 食品安全专家 Agent（primary）
-├── skills/food-safety-audit/                # 检查前风险分析方法论
-│   ├── SKILL.md
-│   ├── workflows/01~06
-│   └── references/{检查要点14项,食品类别目录,risk-grading,report-template}
+├── skills/food-safety-audit/                # 技能包：方法论 + 能力说明 + 索引
+│   ├── SKILL.md                             # 总入口（路径 A 检查前 / 路径 B 检查后）
+│   ├── workflows/01~06                      # 六步检查前分析
+│   ├── capabilities/                        # 8 项引擎能力（checkpoint-match … image-recognition）
+│   └── references/
+│       ├── knowledge-index.md               # 45 检查点 / 45 规则 / 12 法规 / 分类树（自动生成）
+│       ├── audit-cli.md                     # 引擎命令行用法
+│       ├── 检查要点14项.md · 食品类别目录.md
+│       └── risk-grading.md · report-template.md
 ├── audit/                                   # 食品安全审核引擎（迁移自 Food-Audit-Agent）
-│   ├── main.py                              # CLI 入口
+│   ├── main.py                              # CLI 入口（health / inspect）
 │   ├── script/                              # 检索、规则引擎、工作流、AI、报告导出
-│   ├── knowledge/                           # 检查点、法规、风险规则、分类树
+│   ├── knowledge/                           # 检查点、法规、风险规则、分类树、注册表
 │   ├── api/ · web/                          # FastAPI 与页面
-│   ├── skills/                              # 引擎侧 8 个技能（yaml）
+│   ├── skills/                              # 引擎侧 8 个技能定义（yaml）
 │   ├── docs/ · reports/ · tests/
 │   └── pyproject.toml · requirements.txt
-├── scripts/sync.ps1                         # 拉取 / 安装 / 状态
+├── scripts/
+│   ├── sync.ps1                             # 拉取 / 安装 / 状态
+│   └── gen_knowledge_index.py               # 由知识库重新生成 knowledge-index.md
 ├── .upstream.json                           # 上游记录（不含凭据）
 └── .gitignore
 ```
+
+## 融合方式
+
+技能包不是引擎的说明文档，而是**同一套业务口径的两面**：
+
+| 场景 | 走哪条 | 用到什么 |
+|---|---|---|
+| 进场前：这家企业该查什么 | `workflows/01~06` | 企业信息、类别、工艺、法规、历史风险、14 项要点 |
+| 进场后：问题怎么定性 | `capabilities/1→2→3→5` | 检查点匹配 → 法规检索 → 规则判定 → 企业评价 |
+| 写整改与报告 | `capabilities/6→7` | 五要素整改、12 节报告、docx 导出 |
+| 查条款/检查点 | `references/knowledge-index.md` + `audit/knowledge/` | 先索引定位，再读原文 |
+
+结构化知识目前覆盖饮料（原料管理 25 项 + 生产过程管理 20 项），其他食品类别按方法论推导并标注未覆盖。
 
 ## 使用
 
@@ -50,13 +70,19 @@ MyAgents/
 
 ```powershell
 cd audit
-python main.py health                 # 知识库加载状态
+python main.py health                 # READY / 45 / 46 / 45 / 270
 python main.py inspect --id CP-BEV-RM-001
-python main.py inspect --query 原料验收 --risk High
-python -m api.server                  # Web/API（见 audit/docs）
+python main.py inspect --query supplier --risk High
+uvicorn api.server:app --port 8000    # Web/API（见 audit/docs）
 ```
 
 可选：设置 `DEEPSEEK_API_KEY` 启用 AI 分析；不设置时检索、规则、工作流仍可离线运行。
+
+知识库更新后重新生成索引：
+
+```powershell
+python scripts\gen_knowledge_index.py
+```
 
 ## 同步
 
@@ -76,6 +102,8 @@ $env:GITHUB_TOKEN = "github_pat_xxx"; .\scripts\sync.ps1 -Pull -Token $env:GITHU
 原项目历史提交未随迁（原仓库工作区有 117 项未提交改动，以工作区为准）；如需保留历史，可后续用 `git subtree` 重建。
 
 `skills/food-safety-audit/` 来自 `D:\2026年\食品行业合规性检测要求生成器\skills\`，原文件已保留与本仓库一致的口径。
+
+融合内容：`capabilities/` 将 `audit/skills/*/skill.yaml` 的 8 项引擎能力转写为可读说明（输入/输出/引擎位置/对话用法/局限）；`references/knowledge-index.md` 由知识库自动生成，提供检查点、规则、法规、分类树的统一检索入口；`SKILL.md` 改为「检查前方法论 + 检查后引擎流水线」双路径总入口。
 
 ## 免责声明
 

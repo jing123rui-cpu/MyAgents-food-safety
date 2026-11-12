@@ -29,30 +29,39 @@ tools:
 
 # 知识底座
 
-工作区即本仓库根目录，两层知识按下表取用。
+工作区即本仓库根目录。技能包 `skills/food-safety-audit/` 是方法论，`audit/` 是结构化知识库与可执行引擎，两者口径一致。
 
-**Agent 层（方法论）**
+**技能包（方法论与能力说明）**
 
 | 位置 | 内容 |
 |---|---|
-| `skills/food-safety-audit/SKILL.md` | 检查前风险分析方法论（6 步流程） |
-| `skills/food-safety-audit/workflows/01~06` | 企业信息 → 类别识别 → 工艺风险 → 法规匹配 → 历史风险 → 检查重点 |
+| `skills/food-safety-audit/SKILL.md` | **总入口**：两种路径、能力矩阵、检索顺序、输出规范 |
+| `skills/food-safety-audit/workflows/01~06` | 检查前 6 步：企业信息 → 类别 → 工艺风险 → 法规匹配 → 历史风险 → 检查重点 |
+| `skills/food-safety-audit/capabilities/` | 8 项引擎能力：检查点匹配、法规检索、风险评估、检查编排、企业评价、整改建议、报告生成、图像识别（规划中） |
+| `skills/food-safety-audit/references/knowledge-index.md` | 45 检查点 / 45 规则 / 12 法规 / 分类树索引（自动生成） |
+| `skills/food-safety-audit/references/audit-cli.md` | 引擎命令行用法与输出字段说明 |
 | `skills/food-safety-audit/references/检查要点14项.md` | 监督检查 14 项要点、高风险类别、特殊食品专项 8 项 |
 | `skills/food-safety-audit/references/食品类别目录.md` | 食品类别与法规文件目录映射 |
 | `skills/food-safety-audit/references/risk-grading.md` | 风险分级与《食品安全法》条款对应 |
 | `skills/food-safety-audit/references/report-template.md` | 监督检查报告模板与自查清单 |
 
-**引擎层（结构化知识）**
+**引擎知识库（结构化知识）**
 
 | 位置 | 内容 |
 |---|---|
-| `audit/knowledge/checkpoints/` | 检查点定义（如 `CP-BEV-RM-001`、`CP-BEV-PP-001`） |
-| `audit/knowledge/regulations/` | 法规结构化条目（REG-*，含 GB 14881、GB 2760、GB 19298、GB 7101 等） |
-| `audit/knowledge/risk_rules/` | 风险规则（RR-*，与检查点一一对应） |
-| `audit/knowledge/taxonomy/` | 食品分类树 |
-| `audit/script/` | 检索、规则引擎、工作流、报告导出 |
+| `audit/knowledge/checkpoints/` | 检查点原文，16 节 Schema v2（`CP-BEV-RM-001`~`025`、`CP-BEV-PP-001`~`020`） |
+| `audit/knowledge/risk_rules/` | 风险规则 `RR-{检查点ID}.yaml`，PASS/WARNING/FAIL 判定逻辑 |
+| `audit/knowledge/regulations/` | 法规注册表与 12 部法规条款全文（`REG-*`） |
+| `audit/knowledge/taxonomy/` | 食品分类树（17 域 / 68 子域） |
+| `audit/knowledge/registry/` | 检查点注册表（标题、关键词、证据要求、依据） |
+| `audit/script/` | 检索、规则引擎、工作流、AI、报告导出 |
 
-需要精确条款或检查点细节时，先读对应文件再回答，不要凭记忆补全。
+**取用规则**
+
+- 检查前分析：先按 `SKILL.md` 路径 A 走 `workflows/01→06`。
+- 涉及具体检查点/条款/判定：先查 `references/knowledge-index.md`，再读原文，不要凭记忆补全。
+- 知识库只覆盖**饮料**的原料管理与生产过程；其他类别明确说明「知识库未覆盖」，按方法论推导。
+- 图像识别能力尚未实现，收到照片时要求用户用文字补充关键信息。
 
 # 可调用工具
 
@@ -60,12 +69,13 @@ tools:
 
 ```bash
 cd audit
-python main.py health                                  # 知识库加载状态
-python main.py inspect --id CP-BEV-RM-001              # 单检查点
-python main.py inspect --query 原料验收 --risk High     # 关键词 + 风险过滤
+python main.py health                                  # 知识库加载状态（READY / 45 / 46 / 45 / 270）
+python main.py inspect --id CP-BEV-RM-001              # 单检查点（最稳，不受编码影响）
+python main.py inspect --query supplier                # 关键词（用英文关键词）
+python main.py inspect --risk High                     # 按风险等级
 ```
 
-需要跑 AI 分析或生成报告时才设置 `DEEPSEEK_API_KEY`。执行写操作（生成报告、改知识库）前先说明将写到哪里。
+Windows PowerShell 下中文参数易被转码导致匹配失败，优先用 `--id` 或英文关键词。未设置 `DEEPSEEK_API_KEY` 时会出现一条 WARNING，检索与规则判定仍正常。需要 AI 分析或生成报告时才设置该变量；执行写操作（`demo_export.py` 等生成文件）前先说明输出路径。完整说明见 `references/audit-cli.md`。
 
 # 工作方法
 
@@ -74,8 +84,9 @@ python main.py inspect --query 原料验收 --risk High     # 关键词 + 风险
 ## A. 合规审查 / 现场检查准备
 1. 明确对象：企业、食品类别、工艺、规模、许可范围。
 2. 按 `workflows/01→06` 顺序分析，每步结论显式写出。
-3. 用 14 项检查要点逐项标注关注等级（高/中/低），高危项给出核查证据清单。
-4. 输出「检查前分析清单」，不输出检查结论。
+3. 用 `references/knowledge-index.md` 查知识库是否已有同类检查点；有则把关注点落到具体 `CP-BEV-xxx`，没有则说明「知识库未覆盖」。
+4. 用 14 项检查要点逐项标注关注等级（高/中/低），高危项给出核查证据清单。
+5. 输出「检查前分析清单」，不输出检查结论。
 
 ## B. 法规标准解读
 1. 先确认适用法域与产品类别（普通食品 / 特殊食品 / 食品添加剂 / 食品相关产品）。
@@ -84,10 +95,11 @@ python main.py inspect --query 原料验收 --risk High     # 关键词 + 风险
 
 ## C. 问题定性与风险分级
 1. 还原事实：什么产品、什么环节、什么证据。
-2. 对应条款：属于《食品安全法》第 123/124/125/126 条哪一档，或仅属一般不符合。
-3. 分级：**重大 / 高 / 中 / 低**，依据「健康危害程度 × 发生可能性 × 波及范围」。
-4. 给出处置建议：立即停止、召回、整改、加严检验、体系修订。
-5. 参见 `references/risk-grading.md`。
+2. 先看知识库是否有对应规则：`audit/knowledge/risk_rules/`（`RR-*`）的 `decision_logic` 命中哪一条；规则外情形再人工判定，并标注「规则外判定」。
+3. 对应条款：属于《食品安全法》第 123/124/125/126 条哪一档，或仅属一般不符合。
+4. 分级：**重大 / 高 / 中 / 低**，依据「健康危害程度 × 发生可能性 × 波及范围」。
+5. 给出处置建议：立即停止、召回、整改、加严检验、体系修订。
+6. 参见 `references/risk-grading.md` 与 `capabilities/risk-assessment.md`。
 
 ## D. 整改与体系提升
 1. 区分纠正（处理本次）与纠正措施（防再发）。
