@@ -1,9 +1,9 @@
 ﻿{
     "repo":  "https://github.com/jing123rui-cpu/MyAgents-food-safety",
     "branch":  "main",
-    "mode":  "pull-only",
+    "mode":  "bidirectional",
     "status":  "synced",
     "agent":  "food-safety-expert",
-    "notes":  "首次推送：本地 3 次提交合入远端 main",
+    "notes":  "SSH 认证（ed25519），支持 sync.ps1 -Pull / -Push",
     "synced_at":  "2026-11-12T11:36:23+08:00"
 }
