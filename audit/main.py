@@ -40,7 +40,27 @@ def main() -> None:
     insp.add_argument("--category", help="Category name")
     insp.add_argument("--risk", dest="risk_level", help="Risk level (High, Medium, Low)")
 
+    # ── RAG：本地语义检索 ────────────────────────────────────────
+    rag_index = sub.add_parser("index", help="Build or update the semantic index")
+    rag_index.add_argument("--force", action="store_true", help="Rebuild every chunk")
+    rag_index.add_argument(
+        "--scope", nargs="+", default=["knowledge", "skills"],
+        choices=["knowledge", "skills", "repo"],
+    )
+
+    rag_search = sub.add_parser("search", help="Semantic search over knowledge and skills")
+    rag_search.add_argument("query")
+    rag_search.add_argument("-k", type=int, default=5, help="Number of results")
+    rag_search.add_argument("--scope", default="all", choices=["all", "knowledge", "skills"])
+    rag_search.add_argument("--json", action="store_true")
+
+    sub.add_parser("rag-status", help="Show semantic index status")
+
     args = parser.parse_args()
+
+    if args.command in ("index", "search", "rag-status"):
+        from script import rag
+        return rag.main(_rag_argv(args))
 
     # ── Agent initialisation ─────────────────────────────────────
     try:
@@ -175,6 +195,20 @@ def _cmd_inspect(agent: FoodAuditAgent, args: argparse.Namespace) -> None:
 
 # ── Helpers ──────────────────────────────────────────────────────
 
+def _rag_argv(args: argparse.Namespace) -> list[str]:
+    if args.command == "index":
+        argv = ["index", "--scope", *args.scope]
+        if args.force:
+            argv.append("--force")
+        return argv
+    if args.command == "search":
+        argv = ["search", args.query, "-k", str(args.k), "--scope", args.scope]
+        if args.json:
+            argv.append("--json")
+        return argv
+    return ["status"]
+
+
 def _find_registry(entries: list[RegistryEntry], cp_id: str) -> RegistryEntry | None:
     for e in entries:
         if e.id == cp_id:
@@ -191,4 +225,4 @@ def _find_rule(rules: list[RiskRule], cp_id: str) -> RiskRule | None:
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main() or 0)

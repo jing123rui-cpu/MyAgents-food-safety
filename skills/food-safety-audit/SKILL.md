@@ -1,6 +1,6 @@
 ---
 name: food-safety-audit
-description: 食品生产/经营企业合规审查技能包。融合 6 步检查前分析方法论（企业信息→类别→工艺→法规→历史→检查重点）与可运行的审核引擎能力（45 个检查点、45 条风险规则、12 部法规、报告导出）。用于检查前风险研判、法规条款定位、问题定性与风险分级、整改要求与监督检查报告撰写。
+description: 食品生产/经营企业合规审查技能包。融合 6 步检查前分析方法论（企业信息→类别→工艺→法规→历史→检查重点）与可运行的审核引擎能力（45 个检查点、45 条风险规则、12 部法规、报告导出、本地语义检索）。用于检查前风险研判、法规条款定位、问题定性与风险分级、整改要求与监督检查报告撰写。
 ---
 
 # 食品安全合规审查（方法论 + 引擎）
@@ -22,7 +22,7 @@ description: 食品生产/经营企业合规审查技能包。融合 6 步检查
 skills/food-safety-audit/
 ├── SKILL.md                  ← 本文件（总入口）
 ├── workflows/01~06           ← 六步方法论（人工分析）
-├── capabilities/             ← 八项引擎能力（结构化处理）
+├── capabilities/             ← 九项能力（8 引擎能力 + 语义检索）
 └── references/
     ├── knowledge-index.md    ← 45 检查点 / 45 规则 / 12 法规 / 分类树（自动生成）
     ├── audit-cli.md          ← 引擎命令行用法
@@ -36,7 +36,8 @@ audit/                        ← 引擎与结构化知识库
 ├── knowledge/risk_rules/     ← 风险规则（PASS/WARNING/FAIL）
 ├── knowledge/regulations/    ← 法规注册表与条款全文
 ├── knowledge/taxonomy/       ← 食品分类树
-└── script/                   ← 检索、规则引擎、工作流、AI、报告导出
+├── .index/rag.db             ← 本地语义索引（不入库，可重建）
+└── script/                   ← 检索、规则引擎、工作流、AI、报告导出、RAG
 ```
 
 **覆盖范围**：结构化知识目前为饮料制造业（原料管理 25 项 + 生产过程管理 20 项）。其他食品类别按方法论推导，并标注「知识库未覆盖」。
@@ -53,6 +54,7 @@ audit/                        ← 引擎与结构化知识库
 | 6 | [整改建议](capabilities/corrective-action.md) | 已实现 | 写整改要求（五要素） |
 | 7 | [报告生成](capabilities/report-generation.md) | 已实现 | 出 12 节报告与 docx |
 | 8 | [图像识别](capabilities/image-recognition.md) | 规划中 | 照片/扫描件（**当前不可用**） |
+| 9 | [语义检索](capabilities/semantic-search.md) | 已实现 | 描述模糊、关键词查不到时先召回原文 |
 
 ## 路径 A：检查前分析（6 步）
 
@@ -85,15 +87,17 @@ python main.py health                      # READY / 45 / 46 / 45 / 270
 python main.py inspect --id CP-BEV-RM-001
 python main.py inspect --query supplier
 python main.py inspect --risk High
+python main.py search "供应商许可证过期" -k 5   # 语义检索
 ```
 
 ## 检索顺序（不要凭记忆补条款）
 
-1. 在 `references/knowledge-index.md` 按关键词定位检查点 ID。
-2. 读 `audit/knowledge/checkpoints/.../{ID}.md`：检查目的、方法、证据要求、常见发现项、AI 指导。
-3. 读 `audit/knowledge/risk_rules/.../RR-{ID}.yaml`：判定逻辑、等级、法条依据。
-4. 读 `audit/knowledge/regulations/REG-*.md`：条款细节。
-5. 知识库没有的（标签、污染物、致病菌、农残等），按通用知识回答并标 `【需核对原文】`。
+1. **关键词定位**：在 `references/knowledge-index.md` 按关键词找检查点 ID；命中就用 `inspect --id`。
+2. **语义检索**：关键词查不到、或用户用的是口语描述，跑 `python main.py search "<问题>" -k 5`，从 `path` + `heading` 挑候选。
+3. **读原文**：`audit/knowledge/checkpoints/.../{ID}.md`（目的、方法、证据要求、常见发现项、AI 指导）→ `risk_rules/.../RR-{ID}.yaml`（判定逻辑、等级、法条依据）→ `regulations/REG-*.md`（条款细节）。
+4. 知识库没有的（标签、污染物、致病菌、农残等），按通用知识回答并标 `【需核对原文】`。
+
+语义检索只负责召回，不替代条款原文：相似度高不代表条款适用，引用前必须核对类别与现行版本。
 
 ## 输出规范
 
@@ -148,10 +152,12 @@ python main.py inspect --risk High
 
 ## 维护
 
-知识库变更后重新生成索引：
+知识库变更后重新生成索引并更新语义索引：
 
 ```bash
 python scripts/gen_knowledge_index.py
+cd audit
+python main.py index                # 增量更新语义索引（需要 PARATERA_API_KEY）
 ```
 
 新增检查点/规则时，沿用 `audit/knowledge/checkpoints/CHECKPOINT_SCHEMA_V2.md` 的 16 节结构与 `RR-{检查点ID}.yaml` 命名，并同步 `knowledge/registry/` 与分类树，否则 `health` 会出现告警。

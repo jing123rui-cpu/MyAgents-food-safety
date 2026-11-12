@@ -22,5 +22,8 @@ __pycache__/
 build/
 dist/
 
+# 本地语义索引（可重建，不入库）
+audit/.index/
+
 # 同步脚本产生的临时目录
 .tmp/

@@ -90,17 +90,32 @@ python demo_inspection_ai.py
 python demo_writing.py
 ```
 
+### Semantic Search (RAG)
+
+Local vector index over `knowledge/` and `skills/`, embedded with paratera `GLM-Embedding-2` (1024-d) and stored in SQLite. Requires `PARATERA_API_KEY` (or a provider entry in `~/.local/share/opencode/auth.json`).
+
+```bash
+python main.py index                  # incremental build (--force to rebuild)
+python main.py search "supplier license expired" -k 5
+python main.py rag-status
+```
+
+The index lives in `audit/.index/rag.db` and is git-ignored. Retrieval is hybrid: `0.65 × cosine + 0.35 × keyword coverage`, max 2 chunks per file. It only recalls candidates — always verify the original clause.
+
 ### CLI Usage
 
 ```
-usage: main.py [-h] {health,inspect} ...
+usage: main.py [-h] {health,inspect,index,search,rag-status} ...
 
 Food Audit Agent CLI
 
 positional arguments:
-  {health,inspect}  Available commands
+  {health,inspect,index,search,rag-status}
     health          Show agent health status
     inspect         Inspect checkpoints
+    index           Build or update the semantic index
+    search          Semantic search over knowledge and skills
+    rag-status      Show semantic index status
 
 options:
   -h, --help        Show help message
@@ -110,6 +125,12 @@ inspect options:
   --query QUERY          Keyword search
   --category CATEGORY    Category filter
   --risk RISK_LEVEL      Risk level filter
+
+search options:
+  query                  Natural-language question
+  -k N                   Number of results (default 5)
+  --scope {all,knowledge,skills}
+  --json                 JSON output
 ```
 
 ### API Usage
@@ -269,7 +290,7 @@ Food-Audit-Agent/
 - ✅ AI inspection pipeline (5-step)
 - ✅ Audit writing engine (6 generators)
 - ✅ REST API (FastAPI, 4 endpoints)
-- ✅ CLI (health + inspect commands)
+- ✅ CLI (health / inspect / semantic search / index)
 - ✅ 118 passing tests
 - ✅ Word report export engine (.docx)
 

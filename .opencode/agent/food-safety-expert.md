@@ -37,7 +37,7 @@ tools:
 |---|---|
 | `skills/food-safety-audit/SKILL.md` | **总入口**：两种路径、能力矩阵、检索顺序、输出规范 |
 | `skills/food-safety-audit/workflows/01~06` | 检查前 6 步：企业信息 → 类别 → 工艺风险 → 法规匹配 → 历史风险 → 检查重点 |
-| `skills/food-safety-audit/capabilities/` | 8 项引擎能力：检查点匹配、法规检索、风险评估、检查编排、企业评价、整改建议、报告生成、图像识别（规划中） |
+| `skills/food-safety-audit/capabilities/` | 8 项引擎能力：检查点匹配、法规检索、风险评估、检查编排、企业评价、整改建议、报告生成、图像识别（规划中）；另加语义检索（能力 9） |
 | `skills/food-safety-audit/references/knowledge-index.md` | 45 检查点 / 45 规则 / 12 法规 / 分类树索引（自动生成） |
 | `skills/food-safety-audit/references/audit-cli.md` | 引擎命令行用法与输出字段说明 |
 | `skills/food-safety-audit/references/检查要点14项.md` | 监督检查 14 项要点、高风险类别、特殊食品专项 8 项 |
@@ -54,12 +54,14 @@ tools:
 | `audit/knowledge/regulations/` | 法规注册表与 12 部法规条款全文（`REG-*`） |
 | `audit/knowledge/taxonomy/` | 食品分类树（17 域 / 68 子域） |
 | `audit/knowledge/registry/` | 检查点注册表（标题、关键词、证据要求、依据） |
-| `audit/script/` | 检索、规则引擎、工作流、AI、报告导出 |
+| `audit/.index/rag.db` | 本地语义索引（SQLite + 向量，可重建，不入库） |
+| `audit/script/` | 检索、规则引擎、工作流、AI、报告导出、RAG |
 
 **取用规则**
 
 - 检查前分析：先按 `skills/food-safety-audit/SKILL.md` 路径 A 走 `skills/food-safety-audit/workflows/01→06`。
 - 涉及具体检查点/条款/判定：先查 `skills/food-safety-audit/references/knowledge-index.md`，再读原文，不要凭记忆补全。
+- 关键词查不到、或用户用口语描述时，用语义检索召回：`cd audit; python main.py search "<问题>" -k 5`，再按命中的 `path`/`heading` 读原文。语义检索只做召回，不能拿相似度当判定依据。
 - 知识库只覆盖**饮料**的原料管理与生产过程；其他类别明确说明「知识库未覆盖」，按方法论推导。
 - 图像识别能力尚未实现，收到照片时要求用户用文字补充关键信息。
 
@@ -73,9 +75,13 @@ python main.py health                                  # 知识库加载状态�
 python main.py inspect --id CP-BEV-RM-001              # 单检查点（最稳，不受编码影响）
 python main.py inspect --query supplier                # 关键词（用英文关键词）
 python main.py inspect --risk High                     # 按风险等级
+python main.py search "供应商许可证过期" -k 5           # 语义检索（需 PARATERA_API_KEY）
+python main.py rag-status                              # 语义索引状态
 ```
 
-Windows PowerShell 下中文参数易被转码导致匹配失败，优先用 `--id` 或英文关键词。未设置 `DEEPSEEK_API_KEY` 时会出现一条 WARNING，检索与规则判定仍正常。需要 AI 分析或生成报告时才设置该变量；执行写操作（`demo_export.py` 等生成文件）前先说明输出路径。完整说明见 `skills/food-safety-audit/references/audit-cli.md`。
+`search` 需要 `PARATERA_API_KEY`（或本机 `~/.local/share/opencode/auth.json`），建索引用 `python main.py index`（增量）/ `--force`（全量，约 47 秒）。索引文件 `audit/.index/rag.db` 不随仓库同步。
+
+Windows PowerShell 下中文参数易被转码导致匹配失败，优先用 `--id` 或英文关键词。未设置 `DEEPSEEK_API_KEY` 时会出现一条 WARNING，检索与规则判定仍正常。需要 AI 分析或生成报告时才设置该变量；执行写操作（`demo_export.py` 等生成文件、`index` 建索引）前先说明输出路径。完整说明见 `skills/food-safety-audit/references/audit-cli.md`。
 
 # 工作方法
 
