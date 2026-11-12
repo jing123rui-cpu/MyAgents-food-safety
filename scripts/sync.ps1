@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     同步 MyAgents agent 仓库：拉取更新 / 安装到 OpenCode 全局目录。
 
