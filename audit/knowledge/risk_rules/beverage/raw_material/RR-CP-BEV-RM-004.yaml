@@ -1,0 +1,41 @@
+id: RR-CP-BEV-RM-004
+checkpoint_id: CP-BEV-RM-004
+title: 供应商年度评价记录检查
+version: "1.0"
+domain: 供应商管理
+category: 供应商评价
+risk_level: High
+purpose: 确认企业已按制度要求对合格供应商进行定期（年度）评价，评价内容包括供货质量、交货及时性、资质有效性等，并形成评价结论。
+decision_logic:
+  - condition: 年度评价报告完整，不合格供应商有处置记录
+    result: PASS
+  - condition: 有评价记录但未覆盖全部供应商
+    result: WARNING
+    severity: Medium
+  - condition: 评价得分低的供应商仍在正常供货且无记录
+    result: FAIL
+    severity: High
+required_evidence:
+  - 供应商年度评价记录
+pass_condition: 评价完整且不合格供应商已处置
+fail_condition: 连续两年未进行年度供应商评价
+warning_condition: 有评价但覆盖不全或评价不合格未处置
+legal_basis:
+  - REG-GB-14881
+risk_description: 连续两年未进行年度供应商评价
+typical_nonconformities:
+  - 未进行年度评价
+  - 评价覆盖不全
+  - 评价内容流于形式
+  - 评价不合格无后续处置
+recommended_actions:
+  - 查证: 未进行年度评价 — 要求企业立即组织评价
+  - 查证: 评价覆盖不全 — 将未评价供应商纳入补充评价
+  - 查证: 评价不合格无后续处置 — 要求企业制定整改计划
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

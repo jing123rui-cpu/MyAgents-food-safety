@@ -1,0 +1,13 @@
+name: Report Generation
+version: 2.0.0
+description: Generates professional regulatory inspection reports in Word (.docx) format with a formal 12-section layout.
+category: Output
+engine: AuditWritingEngine, ReportExporter
+inputs:
+  - audit_writing_result (AuditWritingResult): Writing result with all 12 report sections
+  - enterprise_info (Dict): Enterprise name, type, auditor, inspection date
+outputs:
+  - word_document (str): File path to the generated .docx report
+  - export_result (ReportExportResult): Export metadata including filename and timestamp
+workflow_stage: 6 - Report Output
+status: implemented

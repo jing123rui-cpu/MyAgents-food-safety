@@ -1,0 +1,417 @@
+# Production Process Management Registry (Process Control)
+# Domain: production_process_management
+# Sub-domain: process_control
+# Total entries: 20
+
+- id: CP-BEV-PP-001
+  title: 工艺参数控制
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 工艺参数监控
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - process parameter
+    - parameter control
+    - temperature
+    - pressure
+    - monitoring
+  evidence_required:
+    - 工艺标准文件
+    - 生产参数记录（5批次）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-001.md
+
+- id: CP-BEV-PP-002
+  title: 设备运行确认
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 工艺参数监控
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - equipment
+    - operation verification
+    - pre-start check
+    - machine readiness
+  evidence_required:
+    - 设备点检/运行确认记录
+    - 仪表校准标签或证书
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-002.md
+
+- id: CP-BEV-PP-003
+  title: 在线检查
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 工艺参数监控
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - online inspection
+    - metal detector
+    - X-ray
+    - reject device
+    - in-line check
+  evidence_required:
+    - 在线检测设备灵敏度验证记录
+    - 不合格品剔除记录
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-003.md
+
+- id: CP-BEV-PP-004
+  title: 物料转移
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 工艺参数监控
+  risk_level: Medium
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - material transfer
+    - cross contamination
+    - container labeling
+    - material handling
+  evidence_required:
+    - 物料转移/交接记录
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-004.md
+
+- id: CP-BEV-PP-005
+  title: 半成品控制
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 工艺参数监控
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - intermediate product
+    - WIP
+    - hold time
+    - temporary storage
+    - semi-finished
+  evidence_required:
+    - 半成品存放时限标准
+    - 生产记录（显示存放时间）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-005.md
+
+- id: CP-BEV-PP-006
+  title: 过程监控
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 工艺参数监控
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - process monitoring
+    - monitoring frequency
+    - control chart
+    - in-process check
+  evidence_required:
+    - 过程监控计划/作业指导书
+    - 过程监控记录（5班次）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-006.md
+
+- id: CP-BEV-PP-007
+  title: 时间温度控制
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 工艺参数监控
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - time
+    - temperature
+    - sterilization
+    - cooling
+    - heat treatment
+    - thermal process
+  evidence_required:
+    - 温度时间记录（5批次）
+    - 温度记录仪校准证书
+    - 工艺标准文件
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-007.md
+
+- id: CP-BEV-PP-008
+  title: 换产管理
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 工艺参数监控
+  risk_level: Medium
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - changeover
+    - product switch
+    - line clearance
+    - first article
+    - product transition
+  evidence_required:
+    - 换产作业指导书
+    - 换产记录（3次）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-008.md
+
+- id: CP-BEV-PP-009
+  title: 生产记录
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程记录
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - batch record
+    - production log
+    - manufacturing record
+    - data integrity
+  evidence_required:
+    - 批生产记录（3批次）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-009.md
+
+- id: CP-BEV-PP-010
+  title: 产品标识
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程记录
+  risk_level: Medium
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - labeling
+    - product identification
+    - status label
+    - segregation
+    - identification
+  evidence_required:
+    - 现场标识照片
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-010.md
+
+- id: CP-BEV-PP-011
+  title: 批次管理
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程记录
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - batch control
+    - lot coding
+    - traceability
+    - batch number
+    - coding rule
+  evidence_required:
+    - 批号编码规则文件
+    - 生产记录（5批次）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-011.md
+
+- id: CP-BEV-PP-012
+  title: 关键工序记录
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程记录
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - critical process
+    - key operation
+    - CCP record
+    - critical step
+    - process log
+  evidence_required:
+    - 关键工序清单/控制计划
+    - 关键工序操作记录（5批次）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-012.md
+
+- id: CP-BEV-PP-013
+  title: 偏差处理
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程偏差处理
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - deviation
+    - non-conformance
+    - corrective action
+    - root cause
+    - CAPA
+  evidence_required:
+    - 偏差管理SOP
+    - 偏差报告（3-5份）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-013.md
+
+- id: CP-BEV-PP-014
+  title: 清场
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程偏差处理
+  risk_level: Medium
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - line clearance
+    - cleaning
+    - changeover cleaning
+    - clearance verification
+  evidence_required:
+    - 清场记录（5份）
+    - 清场SOP或检查表
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-014.md
+
+- id: CP-BEV-PP-015
+  title: 停产恢复
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程偏差处理
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - production interruption
+    - restart
+    - shutdown recovery
+    - post-shutdown
+    - resumption
+  evidence_required:
+    - 停产恢复管理程序
+    - 停产恢复记录（3次）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-015.md
+
+- id: CP-BEV-PP-016
+  title: 工艺确认
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程验证
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - process validation
+    - process qualification
+    - verification
+    - validation protocol
+  evidence_required:
+    - 工艺验证报告
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-016.md
+
+- id: CP-BEV-PP-017
+  title: 取样控制
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程验证
+  risk_level: Medium
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - sampling
+    - in-process sampling
+    - sample control
+    - sample identification
+    - retention
+  evidence_required:
+    - 取样管理程序
+    - 取样记录（5次）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-017.md
+
+- id: CP-BEV-PP-018
+  title: 过程检验
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程验证
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - in-process inspection
+    - quality check
+    - sensory test
+    - laboratory test
+    - online testing
+  evidence_required:
+    - 过程检验计划
+    - 检验记录（10份）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-018.md
+
+- id: CP-BEV-PP-019
+  title: 工艺复核
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程验证
+  risk_level: Medium
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - process review
+    - independent check
+    - double check
+    - verification
+    - cross-check
+  evidence_required:
+    - 工艺复核管理程序
+    - 操作记录（5份）
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-019.md
+
+- id: CP-BEV-PP-020
+  title: 生产符合性
+  domain: production_process_management
+  sub_domain: process_control
+  category: 生产过程管理
+  subcategory: 过程验证
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - production compliance
+    - process conformity
+    - SOP adherence
+    - regulatory compliance
+    - process control
+  evidence_required:
+    - 产品工艺文件/操作规程
+    - 工艺变更记录
+    - 现场操作观察记录
+  checkpoint_file: knowledge/checkpoints/beverage/production_process/CP-BEV-PP-020.md

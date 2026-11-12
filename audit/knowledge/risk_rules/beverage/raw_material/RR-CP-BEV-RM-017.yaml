@@ -1,0 +1,44 @@
+id: RR-CP-BEV-RM-017
+checkpoint_id: CP-BEV-RM-017
+title: 原料离墙离地存放检查
+version: "1.0"
+domain: 原料贮存
+category: 库存管理
+risk_level: High
+purpose: 确认原料存放时与墙壁和地面保持规定距离，便于通风、清洁和虫害控制，防止原料受潮或受到墙壁冷凝水污染。
+decision_logic:
+  - condition: 全部使用垫仓板、离墙≥20cm
+    result: PASS
+  - condition: 部分原料直接落地但为刚卸货暂放
+    result: WARNING
+    severity: Low
+  - condition: 用木板替代垫仓板
+    result: WARNING
+    severity: Low
+  - condition: 距离墙壁5-10cm
+    result: WARNING
+    severity: Low
+required_evidence:
+  - 原料离墙离地存放照片
+pass_condition: 全部离墙离地、堆码规范
+fail_condition: 原料直接落地
+warning_condition: 紧贴墙壁或堆垛不规范
+legal_basis:
+  - REG-GB-14881
+risk_description: 原料直接落地
+typical_nonconformities:
+  - 原料直接放在地面上
+  - 原料紧贴墙壁
+  - 堆垛过高靠近天花板
+  - 通道堵塞
+recommended_actions:
+  - 查证: 原料直接放在地面上 — 使用垫仓板
+  - 查证: 原料紧贴墙壁 — 调整堆放位置
+  - 查证: 通道堵塞 — 清理通道
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

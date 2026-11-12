@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-018
+checkpoint_id: CP-BEV-PP-018
+title: 过程检验
+version: "1.0"
+domain: 生产过程控制
+category: 过程验证
+risk_level: High
+purpose: 确认过程检验按检验计划执行，检验项目、频率和方法符合要求，不合格结果得到有效处置。
+decision_logic:
+  - condition: 过程检验按计划执行，检验项目齐全，频率符合，不合格品有明确处置记录
+    result: PASS
+  - condition: 检验执行到位但个别非关键项目记录稍有延迟
+    result: PASS
+  - condition: 过程检验未按计划执行（关键项目缺失）
+    result: FAIL
+  - condition: 检验发现不合格但产品仍被放行使用
+    result: FAIL
+  - condition: 不合格检验结果无任何处置记录
+    result: FAIL
+required_evidence:
+  - 过程检验计划
+  - 检验记录（10份）
+pass_condition: 过程检验按计划执行、项目齐全、频率符合、不合格品有处置记录
+fail_condition: 过程检验未执行或检验发现不合格后产品仍放行
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 过程检验缺失或不合格品放行可能导致不合格产品流入下一工序或市场
+typical_nonconformities:
+  - 过程检验未按计划执行
+  - 检验项目缺失
+  - 检验频率不足
+  - 不合格结果无处置记录
+  - 发现不合格品仍被放行使用
+recommended_actions:
+  - 查证: 过程检验未按计划执行 — 评估影响范围
+  - 查证: 不合格结果无处置记录 — 追溯不合格品去向
+  - 查证: 发现不合格品仍被放行使用 — 升级为严重不符合
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

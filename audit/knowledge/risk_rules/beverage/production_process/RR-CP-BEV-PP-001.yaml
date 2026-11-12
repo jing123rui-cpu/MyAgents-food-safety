@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-001
+checkpoint_id: CP-BEV-PP-001
+title: 工艺参数控制
+version: "1.0"
+domain: 生产过程控制
+category: 工艺参数监控
+risk_level: High
+purpose: 确认生产过程中关键工艺参数（温度、压力、时间、流量、pH值等）被有效监控和记录，参数控制在工艺标准范围内，确保产品质量稳定。
+decision_logic:
+  - condition: 所有批次参数记录完整，关键参数均在工艺标准范围内，记录与仪表显示一致
+    result: PASS
+  - condition: 关键参数超出控制范围且已采取纠正措施并记录
+    result: PASS
+  - condition: 关键参数超出控制范围且无纠正措施
+    result: FAIL
+  - condition: 参数记录缺失或断档，无法追溯完整生产过程
+    result: FAIL
+  - condition: 参数记录填写不完整或与实际仪表显示不一致
+    result: FAIL
+required_evidence:
+  - 工艺标准文件
+  - 生产参数记录（5批次）
+pass_condition: 所有批次工艺参数均在标准范围内，记录完整准确
+fail_condition: 关键参数超出控制范围且无纠正措施
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 关键工艺参数失控可能导致批量产品不合格或食品安全事故
+typical_nonconformities:
+  - 关键参数超出控制范围
+  - 参数记录缺失或断档
+  - 参数记录与仪表显示不一致
+  - 操作人员不掌握参数要求
+  - 记录表中参数填写不完整
+recommended_actions:
+  - 查证: 关键参数超出控制范围 — 追溯该批次产品去向，升级为重大风险
+  - 查证: 参数记录缺失 — 抽查更多批次判断是否为系统性问题
+  - 查证: 操作人员不掌握参数要求 — 检查培训记录
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

@@ -1,0 +1,12 @@
+name: Corrective Action
+version: 1.0.0
+description: Generates structured corrective action recommendations for identified non-compliances.
+category: Output
+engine: AuditWritingEngine.generate_corrective_action
+inputs:
+  - evaluation_results (List[EvaluationResult]): Non-compliant evaluation results
+  - inspection_context (InspectionContext): Full inspection context for recommendation generation
+outputs:
+  - corrective_requirements (str): Formatted corrective action text for report Section 8
+workflow_stage: 5 - Corrective Requirements
+status: implemented

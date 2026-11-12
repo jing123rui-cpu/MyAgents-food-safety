@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>检查结果</h2>
+    <p style="font-size:16px;font-weight:700;color:#1a3c6e;">企业名称：{{ name }}</p>
+
+    <div class="stat-row">
+        <div class="stat-item">
+            <div class="stat-number">{{ total }}</div>
+            <div class="stat-label">检查项</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number success">{{ compliant }}</div>
+            <div class="stat-label">合格</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number danger">{{ non_compliant }}</div>
+            <div class="stat-label">不合格</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number danger">{{ key_risks }}</div>
+            <div class="stat-label">重点风险项</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">{{ general_risks }}</div>
+            <div class="stat-label">一般风险项</div>
+        </div>
+    </div>
+
+    <div class="conclusion-box {{ 'pass' if is_pass else 'fail' }}">
+        {{ conclusion }}
+    </div>
+</div>
+
+<div class="card">
+    <h2>引用法规</h2>
+    <ul class="reg-list">
+        {% for reg in regulations %}
+        <li>{{ reg }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card">
+    <h2>检查详情</h2>
+    {% if findings %}
+    <ul class="findings-list">
+        {% for f in findings %}
+        <li class="finding-item">
+            <div class="problem">问题：{{ f.problem }}</div>
+            <div class="arrow">&darr;</div>
+            <div class="detail">
+                检查点：{{ f.checkpoint_id }} — {{ f.checkpoint_name }}<br>
+                风险等级：{{ f.risk_label }}<br>
+                判定：<strong style="color:{{ 'red' if f.status=='不合格' else 'green' }}">{{ f.status }}</strong><br>
+                法规：{{ f.law }}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p style="color:#666;">无检查详情数据。</p>
+    {% endif %}
+</div>
+
+<div class="card text-center">
+    <form action="/ui/export" method="post" id="export-form">
+        <input type="hidden" name="analysis_id" value="{{ analysis_id }}">
+        <button type="submit" class="btn btn-success" style="font-size:18px;padding:14px 50px;" id="export-btn">生成监督检查报告</button>
+    </form>
+    <div id="export-result" class="hidden" style="margin-top:20px;padding:20px;border:1px solid #1a7a3a;background:#f0faf0;">
+        <p style="font-size:16px;color:#1a7a3a;font-weight:700;">报告生成成功</p>
+        <p id="export-filename" style="font-size:14px;color:#333;margin:8px 0;"></p>
+        <a id="download-link" class="btn btn-success mt-10" target="_blank">下载报告</a>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.getElementById("export-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    var btn = document.getElementById("export-btn");
+    btn.disabled = true;
+    btn.textContent = "正在生成...";
+
+    var formData = new FormData(this);
+    fetch("/ui/export", { method: "POST", body: formData })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.success) {
+                document.getElementById("export-result").classList.remove("hidden");
+                document.getElementById("export-filename").textContent = "文件：" + data.filename;
+                document.getElementById("download-link").href = data.download_url;
+            } else {
+                alert("导出失败：" + (data.error || "未知错误"));
+            }
+        })
+        .catch(function(err) {
+            alert("导出失败：" + err.message);
+        })
+        .finally(function() {
+            btn.disabled = false;
+            btn.textContent = "生成监督检查报告";
+        });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-006
+checkpoint_id: CP-BEV-PP-006
+title: 过程监控
+version: "1.0"
+domain: 生产过程控制
+category: 工艺参数监控
+risk_level: High
+purpose: 确认生产过程监控计划得到有效执行，监控频率和项目符合要求，过程异常时能及时识别并采取措施。
+decision_logic:
+  - condition: 过程监控计划完整，监控记录按规定频率执行，数据正常且签字齐全
+    result: PASS
+  - condition: 监控记录完整但有非关键项目的轻微频率偏差
+    result: PASS
+  - condition: 无过程监控计划
+    result: FAIL
+  - condition: 监控记录与实际生产时间不符（疑似事后补填）
+    result: FAIL
+  - condition: 监控数据显示异常趋势但无任何分析或处置记录
+    result: FAIL
+required_evidence:
+  - 过程监控计划/作业指导书
+  - 过程监控记录（5班次）
+pass_condition: 监控计划完整、记录频率符合要求、异常时有关联记录
+fail_condition: 无监控计划或监控记录与实际生产不符
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 过程监控缺失可能导致工艺偏移未被发现，造成批量不合格
+typical_nonconformities:
+  - 无过程监控计划
+  - 监控频率低于规定要求
+  - 监控记录与实际生产时间不符
+  - 监控数据异常但无分析处置记录
+  - 监控记录签名缺失
+recommended_actions:
+  - 查证: 无过程监控计划 — 要求企业建立
+  - 查证: 监控记录与实际生产时间不符 — 调查记录真实性
+  - 查证: 监控数据异常但无分析处置记录 — 追溯异常时间段产品
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

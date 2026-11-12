@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-019
+checkpoint_id: CP-BEV-PP-019
+title: 工艺复核
+version: "1.0"
+domain: 生产过程控制
+category: 过程验证
+risk_level: Medium
+purpose: 确认关键工艺步骤由第二人独立复核，复核记录完整，确保操作准确无误。
+decision_logic:
+  - condition: 工艺复核程序明确，关键步骤均有独立复核记录且签名完整
+    result: PASS
+  - condition: 复核记录完整但个别非关键步骤复核略有延迟
+    result: PASS
+  - condition: 无工艺复核管理程序
+    result: FAIL
+  - condition: 关键工艺步骤未经复核即进入下一工序
+    result: FAIL
+  - condition: 复核人与操作人为同一人（非独立复核）
+    result: FAIL
+required_evidence:
+  - 工艺复核管理程序
+  - 操作记录（5份）
+pass_condition: 复核程序明确、关键步骤均有独立复核记录、签名完整
+fail_condition: 关键工艺步骤未经复核即进入下一工序
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 关键工艺步骤未经独立复核可能导致操作错误未被及时发现
+typical_nonconformities:
+  - 无工艺复核管理程序
+  - 关键步骤无复核记录
+  - 复核人与操作人为同一人
+  - 复核记录签名缺失
+  - 复核发现错误但无纠正记录
+recommended_actions:
+  - 查证: 关键步骤无复核记录 — 评估操作准确性
+  - 查证: 复核人与操作人为同一人 — 复核要求立即改正
+  - 查证: 复核发现错误但无纠正记录 — 追溯是否已纠正
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: Medium
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

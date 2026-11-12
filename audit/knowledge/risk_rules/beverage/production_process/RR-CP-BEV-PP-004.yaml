@@ -1,0 +1,46 @@
+id: RR-CP-BEV-PP-004
+checkpoint_id: CP-BEV-PP-004
+title: 物料转移
+version: "1.0"
+domain: 生产过程控制
+category: 工艺参数监控
+risk_level: Medium
+purpose: 确认生产过程中物料转移操作规范，容器标识清晰，防止交叉污染和物料混淆。
+decision_logic:
+  - condition: 所有物料转移有记录，容器标识清晰完整，交接手续齐全
+    result: PASS
+  - condition: 容器标识存在但不完整（如缺少有效期）
+    result: PASS
+  - condition: 转移容器无任何物料标识
+    result: FAIL
+  - condition: 物料交接记录缺失或记录与实际不符
+    result: FAIL
+  - condition: 发现不同物料共容器转移且无清场记录
+    result: FAIL
+required_evidence:
+  - 物料转移/交接记录
+pass_condition: 物料转移有记录、容器标识清晰、交接手续完整
+fail_condition: 物料转移无记录或容器无标识导致混淆风险
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 物料转移无标识或记录不全可能导致交叉污染或物料误用
+typical_nonconformities:
+  - 转移容器无物料标识
+  - 交接记录缺失
+  - 转移过程中未采取防护措施
+  - 不同物料共容器转移
+  - 转移记录与实际物料不符
+recommended_actions:
+  - 查证: 转移容器无物料标识 — 现场立即整改
+  - 查证: 交接记录缺失 — 评估是否有物料混淆风险
+  - 查证: 不同物料共容器转移 — 追溯是否已造成交叉污染
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: Medium
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

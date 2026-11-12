@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-017
+checkpoint_id: CP-BEV-PP-017
+title: 取样控制
+version: "1.0"
+domain: 生产过程控制
+category: 过程验证
+risk_level: Medium
+purpose: 确认过程取样按取样计划执行，取样操作规范、样品标识清晰、样品保存条件符合要求。
+decision_logic:
+  - condition: 取样严格按计划执行，操作规范，样品标识清晰，保存条件符合要求
+    result: PASS
+  - condition: 取样频率符合但个别样品标识信息不完整
+    result: PASS
+  - condition: 未按取样计划执行且无合理解释
+    result: FAIL
+  - condition: 样品无任何标识、无法识别来源
+    result: FAIL
+  - condition: 样品保存条件严重不符合要求（如需冷藏样品置于常温）
+    result: FAIL
+required_evidence:
+  - 取样管理程序
+  - 取样记录（5次）
+pass_condition: 取样按计划执行、操作规范、标识清晰、保存条件符合要求
+fail_condition: 未按取样计划执行或样品无法识别来源
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 取样不规范可能导致检验结果不具有代表性，误判产品质量
+typical_nonconformities:
+  - 未按取样计划执行
+  - 样品无标识或标识不清
+  - 取样操作可能造成污染
+  - 样品保存条件不符合要求
+  - 取样记录不完整
+recommended_actions:
+  - 查证: 未按取样计划执行 — 评估是否影响检验代表性
+  - 查证: 样品无标识 — 要求重新取样
+  - 查证: 样品保存条件不符合要求 — 评估样品有效性
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: Medium
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

@@ -1,0 +1,13 @@
+name: Inspection Review
+version: 1.0.0
+description: Orchestrates the full inspection workflow from evidence collection to structured context assembly.
+category: Workflow Orchestration
+engine: InspectionPipeline, InspectionWorkflow, ContextEngine
+inputs:
+  - inspection_request (InspectionRequest): Search parameters and evidence
+  - knowledge_repository (KnowledgeRepository): Loaded knowledge assets
+outputs:
+  - inspection_context (InspectionContext): Enriched inspection context with checkpoint, taxonomy, registry, and risk data
+  - ai_inspection_result (AIInspectionResult): Complete pipeline result including AI response (if provider configured)
+workflow_stage: 1-3 (Orchestration)
+status: implemented

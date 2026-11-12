@@ -1,0 +1,44 @@
+id: RR-CP-BEV-RM-020
+checkpoint_id: CP-BEV-RM-020
+title: PET瓶坯验收检查
+version: "1.0"
+domain: 包装材料管理
+category: 包材验收
+risk_level: High
+purpose: 确认PET瓶坯的验收符合企业标准，瓶坯的外观、尺寸、重量、卫生指标等满足生产要求。
+decision_logic:
+  - condition: 有验收标准、记录完整、外观良好
+    result: PASS
+  - condition: 瓶坯包装破损但企业声称将退回
+    result: WARNING
+    severity: Low
+  - condition: 使用回收料生产的瓶坯
+    result: WARNING
+    severity: Medium
+required_evidence:
+  - 瓶坯验收标准
+  - 瓶坯验收记录
+  - 瓶坯外观照片
+pass_condition: 验收标准完善、记录完整
+fail_condition: 瓶坯包装破损污染且已投入使用
+warning_condition: 无验收标准或验收记录
+legal_basis:
+  - REG-GB-14881
+risk_description: 瓶坯包装破损污染且已投入使用
+typical_nonconformities:
+  - 瓶坯外观有明显缺陷（毛刺、黑点）
+  - 包装破损导致瓶坯暴露
+  - 无瓶坯验收标准和记录
+  - 瓶坯重量不达标
+  - 瓶坯标识不清
+recommended_actions:
+  - 查证: 包装破损导致瓶坯暴露 — 评估污染风险
+  - 查证: 无瓶坯验收标准和记录 — 建立验收制度
+  - 查证: 瓶坯外观有明显缺陷（毛刺、黑点） — 反馈供应商
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

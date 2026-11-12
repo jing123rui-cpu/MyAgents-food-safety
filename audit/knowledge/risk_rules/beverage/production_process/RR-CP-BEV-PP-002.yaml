@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-002
+checkpoint_id: CP-BEV-PP-002
+title: 设备运行确认
+version: "1.0"
+domain: 生产过程控制
+category: 工艺参数监控
+risk_level: High
+purpose: 确认生产设备在开机前已完成运行状态确认，设备运行正常、仪表有效，确保生产在设备可靠条件下进行。
+decision_logic:
+  - condition: 设备开机前点检记录完整，所有仪表在有效校准期内，设备运行参数正常
+    result: PASS
+  - condition: 设备点检记录完整但有次要仪表即将到期（1个月内）
+    result: PASS
+  - condition: 设备无开机前点检记录即投入使用
+    result: FAIL
+  - condition: 关键仪表超过校准有效期
+    result: FAIL
+  - condition: 点检记录显示设备异常但未处置即开机生产
+    result: FAIL
+required_evidence:
+  - 设备点检/运行确认记录
+  - 仪表校准标签或证书
+pass_condition: 设备点检记录完整且均在有效校准期内，设备运行正常
+fail_condition: 设备未经点检即投入使用或关键仪表超过校准有效期
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 设备未经运行确认即投入生产可能导致工艺参数失控或产品质量缺陷
+typical_nonconformities:
+  - 设备无开机前点检记录
+  - 关键仪表超过校准有效期
+  - 点检记录显示异常但未处置即开机
+  - 设备运行不稳定但未标注
+  - 点检记录填写不完整
+recommended_actions:
+  - 查证: 设备无开机前点检记录 — 确认为系统性缺失
+  - 查证: 关键仪表超过校准有效期 — 追溯使用该仪表的批次
+  - 查证: 点检记录显示异常但未处置 — 升级为重大不符合
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

@@ -1,0 +1,12 @@
+name: Enterprise Evaluation
+version: 1.0.0
+description: Aggregates per-checkpoint evaluation results into an enterprise-level conclusion.
+category: Core Inspection
+engine: EnterpriseEvaluation (core/models.py)
+inputs:
+  - evaluation_results (List[EvaluationResult]): All per-checkpoint compliance results
+outputs:
+  - enterprise_evaluation (EnterpriseEvaluation): Aggregated evaluation with overall pass/fail conclusion
+  - summary (str): Chinese-language summary text
+workflow_stage: 4 - Enterprise Conclusion
+status: implemented

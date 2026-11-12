@@ -1,0 +1,48 @@
+id: RR-CP-BEV-RM-003
+checkpoint_id: CP-BEV-RM-003
+title: 供应商准入评价记录检查
+version: "1.0"
+domain: 供应商管理
+category: 供应商评价
+risk_level: High
+purpose: 确认企业在引入新供应商前已按照制度规定完成了准入评价，包括资质审核、现场评审（如适用）和审批流程。
+decision_logic:
+  - condition: 准入记录完整、审批齐全
+    result: PASS
+  - condition: 有准入记录但缺少审批签字
+    result: WARNING
+    severity: Low
+  - condition: 合格名录中供应商无准入记录
+    result: WARNING
+    severity: Medium
+  - condition: 制度要求现场评审但无现场记录
+    result: WARNING
+    severity: Medium
+required_evidence:
+  - 供应商准入评价记录
+  - 供应商准入制度
+pass_condition: 新增供应商全部有完整的准入评价记录
+fail_condition: 无准入制度或新增供应商完全无准入记录
+warning_condition: 有准入记录但内容不完整或审批缺失
+legal_basis:
+  - REG-FOOD-SAFETY-LAW
+  - REG-GB-14881
+risk_description: 无准入制度或新增供应商完全无准入记录
+typical_nonconformities:
+  - 无准入制度
+  - 新增供应商无准入记录
+  - 准入评价内容不完整
+  - 审批流程缺失
+  - 制度规定现场评审但实际未执行
+recommended_actions:
+  - 查证: 无准入制度 — 要求企业建立供应商准入管理程序
+  - 查证: 新增供应商无准入记录 — 追溯该供应商的采购历史
+  - 查证: 准入评价内容不完整 — 要求补充评价记录
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-FOOD-SAFETY-LAW
+    - REG-GB-14881
+  recommendation: ""

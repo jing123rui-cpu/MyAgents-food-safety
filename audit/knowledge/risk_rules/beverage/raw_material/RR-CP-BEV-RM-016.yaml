@@ -1,0 +1,45 @@
+id: RR-CP-BEV-RM-016
+checkpoint_id: CP-BEV-RM-016
+title: 原料库存标识检查
+version: "1.0"
+domain: 原料贮存
+category: 库存管理
+risk_level: High
+purpose: 确认库存原料的标识齐全、清晰、准确，包括品名、批号、生产日期、保质期、数量、库存状态（合格/待检/不合格）等信息。
+decision_logic:
+  - condition: 所有检查的原料均有完整清晰标识
+    result: PASS
+  - condition: 发现无标识原料堆垛
+    result: WARNING
+    severity: Medium
+  - condition: 标识信息显示批号相同但包装日期不同
+    result: WARNING
+    severity: Medium
+  - condition: 标识上状态为"合格"但该原料尚未完成检验
+    result: FAIL
+    severity: High
+required_evidence:
+  - 库存标识照片（3-5张）
+pass_condition: 标识齐全清晰
+fail_condition: 无标识或标识与实物不符
+warning_condition: 标识信息不全或状态标识缺失
+legal_basis:
+  - REG-GB-14881
+risk_description: 无标识或标识与实物不符
+typical_nonconformities:
+  - 原料完全无标识
+  - 标识信息不全
+  - 标识与实物不一致
+  - 无状态标识（合格/待检）
+  - 标识脏污脱落
+recommended_actions:
+  - 查证: 原料完全无标识 — 立即补充标识
+  - 查证: 标识与实物不一致 — 核实物料信息
+  - 查证: 无状态标识（合格/待检） — 完善状态管理
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

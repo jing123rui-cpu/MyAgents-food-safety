@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-013
+checkpoint_id: CP-BEV-PP-013
+title: 偏差处理
+version: "1.0"
+domain: 生产过程控制
+category: 过程偏差处理
+risk_level: High
+purpose: 确认偏差管理控制度执行，所有偏差被记录、评估、调查根本原因并采取纠正预防措施，受影响产品得到适当处置。
+decision_logic:
+  - condition: 偏差均按SOP记录，根本原因已查明，产品处置明确，CAPA按时完成并验证有效
+    result: PASS
+  - condition: 偏差已记录但根本原因分析不够深入，CAPA措施基本落实
+    result: PASS
+  - condition: 发现明显偏差但无任何记录
+    result: FAIL
+  - condition: 偏差产品未经任何评估即放行使用
+    result: FAIL
+  - condition: 偏差报告中无根本原因分析且无产品处置结论
+    result: FAIL
+required_evidence:
+  - 偏差管理SOP
+  - 偏差报告（3-5份）
+pass_condition: 偏差管理SOP完善、偏差均被记录、根本原因已查明、产品处置明确、CAPA有效
+fail_condition: 发现偏差未被记录或偏差产品未经评估即放行
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 偏差隐匿或偏差产品未经评估即放行可能造成食品安全风险
+typical_nonconformities:
+  - 发现明显偏差但无记录
+  - 偏差报告中根本原因分析缺失
+  - 偏差产品处置结论不明确
+  - 纠正预防措施未在规定期限内完成
+  - CAPA有效性未验证
+recommended_actions:
+  - 查证: 发现明显偏差但无记录 — 升级为严重不符合
+  - 查证: 偏差产品处置结论不明确 — 要求企业重新评估
+  - 查证: CAPA有效性未验证 — 要求完成验证后关闭
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

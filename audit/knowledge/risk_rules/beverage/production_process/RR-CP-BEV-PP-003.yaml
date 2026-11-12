@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-003
+checkpoint_id: CP-BEV-PP-003
+title: 在线检查
+version: "1.0"
+domain: 生产过程控制
+category: 工艺参数监控
+risk_level: High
+purpose: 确认在线检测设备（金属检测器、X光机、检重秤等）正常运行，灵敏度验证执行到位，异常品被有效剔除。
+decision_logic:
+  - condition: 在线检测设备正常运行，灵敏度验证按规定频率执行且结果合格，剔除记录完整
+    result: PASS
+  - condition: 灵敏度验证频率略低于规定但最近一次验证结果合格
+    result: PASS
+  - condition: 在线检测设备未开启或处于旁通状态
+    result: FAIL
+  - condition: 灵敏度验证结果不合格且未采取任何措施
+    result: FAIL
+  - condition: 不合格品剔除记录缺失或剔除装置失效
+    result: FAIL
+required_evidence:
+  - 在线检测设备灵敏度验证记录
+  - 不合格品剔除记录
+pass_condition: 在线检测设备灵敏度验证合格、记录完整，剔除记录与验证结果一致
+fail_condition: 在线检测设备未运行或灵敏度验证不合格但未处置
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 在线检测设备失效可能导致金属异物等物理危害未被检出
+typical_nonconformities:
+  - 在线检测设备未开启或处于旁通状态
+  - 灵敏度验证频率低于规定要求
+  - 灵敏度验证结果不合格但未处理
+  - 不合格品剔除记录缺失
+  - 剔除装置失效
+recommended_actions:
+  - 查证: 在线检测设备未开启或处于旁通状态 — 立即恢复并对旁通期间产品隔离评估
+  - 查证: 灵敏度验证不合格 — 追溯上次合格验证后的所有产品
+  - 查证: 剔除装置失效 — 维修后重新验证并评估受影响的产品
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

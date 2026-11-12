@@ -1,0 +1,13 @@
+name: Checkpoint Match
+version: 1.0.0
+description: Maps unstructured inspection findings to structured audit checkpoints using keyword-based sliding-window matching and taxonomy filtering.
+category: Core Inspection
+engine: InspectionPipeline, taxonomy, registry
+inputs:
+  - findings (List[str]): Raw inspection problem descriptions
+  - enterprise_type (str): Enterprise category for applicable checkpoint filtering
+outputs:
+  - matched_checkpoints (List[Checkpoint]): Identified checkpoint candidates with relevance scores
+  - unmatched_findings (List[str]): Findings that could not be mapped to any checkpoint
+workflow_stage: 1 - Finding Analysis
+status: implemented

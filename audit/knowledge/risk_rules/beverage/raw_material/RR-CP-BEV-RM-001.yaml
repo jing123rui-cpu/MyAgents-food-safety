@@ -1,0 +1,50 @@
+id: RR-CP-BEV-RM-001
+checkpoint_id: CP-BEV-RM-001
+title: 供应商生产许可证审查
+version: "1.0"
+domain: 供应商管理
+category: 供应商资质审核
+risk_level: Critical
+purpose: 确认企业采购的所有食品原料供应商持有有效的食品生产许可证，且许可证载明的品种范围覆盖实际供应产品。
+decision_logic:
+  - condition: 许可证复印件与原件一致且在有效期内
+    result: PASS
+  - condition: 许可证已过期但企业声称正在办理续期
+    result: WARNING
+    severity: Medium
+  - condition: 企业无法提供某家供应商的许可证
+    result: FAIL
+    severity: Critical
+  - condition: 发现证书编号在国家平台查不到
+    result: FAIL
+    severity: Critical
+  - condition: 多份许可证均为同一签发日期或同一编号格式异常
+    result: FAIL
+    severity: Critical
+required_evidence:
+  - 供应商生产许可证复印件
+pass_condition: 所有检查的供应商许可证齐全有效，品种范围覆盖
+fail_condition: 供应商无生产许可证或许可证已过期
+warning_condition: 许可证信息不完整但已在补充中
+legal_basis:
+  - REG-PRODUCE-MEASURE
+  - REG-FOOD-SAFETY-LAW
+risk_description: 任一供应商无证或使用过期许可证采购原料
+typical_nonconformities:
+  - 供应商无生产许可证
+  - 许可证已过期
+  - 品种范围不覆盖
+  - 证照信息与实际不符
+  - 企业未留存许可证
+recommended_actions:
+  - 查证: 供应商无生产许可证 — 要求企业立即停止从该供应商采购
+  - 查证: 许可证已过期 — 要求企业提供续期受理回执
+  - 查证: 品种范围不覆盖 — 评估是否构成超范围生产
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-PRODUCE-MEASURE
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

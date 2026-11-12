@@ -1,0 +1,1334 @@
+beverage_knowledge_tree:
+  metadata:
+    name: Beverage Manufacturing Audit Knowledge Taxonomy
+    description: 饮料制造审核知识分类体系
+    version: "1.1"
+    total_domains: 17
+    total_sub_domains: 68
+    total_categories: 119
+    total_checkpoints: 45
+    mapped_checkpoints: 45
+
+  domains:
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 1: Raw Material Management (原料管理) — 25 checkpoints
+    # ═══════════════════════════════════════════════════════════════
+    - id: raw_material_management
+      name: Raw Material Management
+      name_zh: 原料管理
+      status: active
+      total_checkpoints: 25
+      sub_domains:
+
+        - id: supplier_management
+          name: Supplier Management
+          name_zh: 供应商管理
+          total_checkpoints: 5
+          categories:
+            - id: supplier_qualification
+              name: Supplier Qualification
+              name_zh: 供应商资质审核
+              checkpoints:
+                - CP-BEV-RM-001
+                - CP-BEV-RM-002
+            - id: supplier_evaluation
+              name: Supplier Evaluation
+              name_zh: 供应商评价
+              checkpoints:
+                - CP-BEV-RM-003
+                - CP-BEV-RM-004
+            - id: approved_supplier_list
+              name: Approved Supplier List
+              name_zh: 合格供应商名录
+              checkpoints:
+                - CP-BEV-RM-005
+
+        - id: receiving_inspection
+          name: Receiving Inspection
+          name_zh: 原料验收
+          total_checkpoints: 7
+          categories:
+            - id: receiving_records
+              name: Receiving Records
+              name_zh: 进货查验记录
+              checkpoints:
+                - CP-BEV-RM-006
+                - CP-BEV-RM-007
+            - id: sensory_inspection
+              name: Sensory Inspection
+              name_zh: 感官验收
+              checkpoints:
+                - CP-BEV-RM-008
+                - CP-BEV-RM-009
+                - CP-BEV-RM-010
+            - id: non_conforming_material
+              name: Non-Conforming Material
+              name_zh: 不合格原料处理
+              checkpoints:
+                - CP-BEV-RM-011
+                - CP-BEV-RM-012
+
+        - id: storage
+          name: Storage
+          name_zh: 原料贮存
+          total_checkpoints: 7
+          categories:
+            - id: warehouse_conditions
+              name: Warehouse Conditions
+              name_zh: 仓库条件
+              checkpoints:
+                - CP-BEV-RM-013
+                - CP-BEV-RM-014
+            - id: inventory_management
+              name: Inventory Management
+              name_zh: 库存管理
+              checkpoints:
+                - CP-BEV-RM-015
+                - CP-BEV-RM-016
+                - CP-BEV-RM-017
+            - id: special_material_management
+              name: Special Material Management
+              name_zh: 特殊原料管理
+              checkpoints:
+                - CP-BEV-RM-018
+                - CP-BEV-RM-019
+
+        - id: packaging_materials
+          name: Packaging Materials
+          name_zh: 包装材料管理
+          total_checkpoints: 3
+          categories:
+            - id: packaging_receiving
+              name: Packaging Receiving
+              name_zh: 包材验收
+              checkpoints:
+                - CP-BEV-RM-020
+                - CP-BEV-RM-021
+            - id: packaging_storage
+              name: Packaging Storage
+              name_zh: 包材贮存
+              checkpoints:
+                - CP-BEV-RM-022
+
+        - id: food_additives
+          name: Food Additives
+          name_zh: 食品添加剂管理
+          total_checkpoints: 3
+          categories:
+            - id: additive_usage_records
+              name: Usage Records
+              name_zh: 添加剂使用记录
+              checkpoints:
+                - CP-BEV-RM-023
+            - id: additive_weighing_verification
+              name: Weighing Verification
+              name_zh: 添加剂称量复核
+              checkpoints:
+                - CP-BEV-RM-024
+            - id: additive_gb2760_compliance
+              name: GB 2760 Compliance
+              name_zh: GB2760符合性
+              checkpoints:
+                - CP-BEV-RM-025
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 2: Production Process (生产过程)
+    # ═══════════════════════════════════════════════════════════════
+    - id: production_process
+      name: Production Process
+      name_zh: 生产过程
+      status: placeholder
+      description: 涵盖调配、杀菌、灌装、封盖等生产环节的审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: water_treatment
+          name: Water Treatment
+          name_zh: 水处理
+          total_checkpoints: 0
+          categories:
+            - id: water_quality
+              name: Water Quality
+              name_zh: 水质管理
+              checkpoints: []
+            - id: water_treatment_equipment
+              name: Treatment Equipment
+              name_zh: 水处理设备
+              checkpoints: []
+            - id: water_monitoring
+              name: Water Monitoring
+              name_zh: 水质监控
+              checkpoints: []
+        - id: mixing_blending
+          name: Mixing / Blending
+          name_zh: 调配
+          total_checkpoints: 0
+          categories:
+            - id: recipe_management
+              name: Recipe Management
+              name_zh: 配方管理
+              checkpoints: []
+            - id: batching_control
+              name: Batching Control
+              name_zh: 投料控制
+              checkpoints: []
+            - id: mixing_process
+              name: Mixing Process
+              name_zh: 调配过程
+              checkpoints: []
+        - id: sterilization
+          name: Sterilization
+          name_zh: 杀菌
+          total_checkpoints: 0
+          categories:
+            - id: thermal_sterilization
+              name: Thermal Sterilization
+              name_zh: 热力杀菌
+              checkpoints: []
+            - id: aseptic_processing
+              name: Aseptic Processing
+              name_zh: 无菌加工
+              checkpoints: []
+            - id: sterilization_validation
+              name: Sterilization Validation
+              name_zh: 杀菌验证
+              checkpoints: []
+        - id: filling
+          name: Filling
+          name_zh: 灌装
+          total_checkpoints: 0
+          categories:
+            - id: filling_environment
+              name: Filling Environment
+              name_zh: 灌装环境
+              checkpoints: []
+            - id: filler_hygiene
+              name: Filler Hygiene
+              name_zh: 灌装机卫生
+              checkpoints: []
+            - id: fill_weight_control
+              name: Fill Weight Control
+              name_zh: 灌装量控制
+              checkpoints: []
+        - id: capping_sealing
+          name: Capping / Sealing
+          name_zh: 封盖密封
+          total_checkpoints: 0
+          categories:
+            - id: seal_integrity
+              name: Seal Integrity
+              name_zh: 密封完整性
+              checkpoints: []
+            - id: cap_application
+              name: Cap Application
+              name_zh: 封盖工艺
+              checkpoints: []
+        - id: labeling_packaging
+          name: Labeling / Packaging
+          name_zh: 贴标包装
+          total_checkpoints: 0
+          categories:
+            - id: labeling_accuracy
+              name: Labeling Accuracy
+              name_zh: 标识准确性
+              checkpoints: []
+            - id: packaging_quality
+              name: Packaging Quality
+              name_zh: 包装质量
+              checkpoints: []
+        - id: in_process_control
+          name: In-Process Control
+          name_zh: 过程控制
+          total_checkpoints: 0
+          categories:
+            - id: ipc_monitoring
+              name: IPC Monitoring
+              name_zh: 过程监控
+              checkpoints: []
+            - id: ipc_records
+              name: IPC Records
+              name_zh: 过程记录
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 3: Facility and Equipment (设施设备)
+    # ═══════════════════════════════════════════════════════════════
+    - id: facility_and_equipment
+      name: Facility and Equipment
+      name_zh: 设施设备
+      status: placeholder
+      description: 涵盖厂房布局、设备维护、仪器校准等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: plant_layout
+          name: Plant Layout
+          name_zh: 厂房布局
+          total_checkpoints: 0
+          categories:
+            - id: facility_design
+              name: Facility Design
+              name_zh: 厂房设计
+              checkpoints: []
+            - id: workflow_segregation
+              name: Workflow Segregation
+              name_zh: 人流物流隔离
+              checkpoints: []
+        - id: equipment_maintenance
+          name: Equipment Maintenance
+          name_zh: 设备维护
+          total_checkpoints: 0
+          categories:
+            - id: maintenance_plan
+              name: Maintenance Plan
+              name_zh: 维护计划
+              checkpoints: []
+            - id: maintenance_records
+              name: Maintenance Records
+              name_zh: 维护记录
+              checkpoints: []
+            - id: spare_parts
+              name: Spare Parts
+              name_zh: 备件管理
+              checkpoints: []
+        - id: calibration_management
+          name: Calibration Management
+          name_zh: 仪器校准
+          total_checkpoints: 0
+          categories:
+            - id: calibration_plan
+              name: Calibration Plan
+              name_zh: 校准计划
+              checkpoints: []
+            - id: calibration_records
+              name: Calibration Records
+              name_zh: 校准记录
+              checkpoints: []
+            - id: calibration_labels
+              name: Calibration Labels
+              name_zh: 校准标识
+              checkpoints: []
+        - id: utility_systems
+          name: Utility Systems
+          name_zh: 公用设施
+          total_checkpoints: 0
+          categories:
+            - id: water_system
+              name: Water System
+              name_zh: 供水系统
+              checkpoints: []
+            - id: compressed_air
+              name: Compressed Air
+              name_zh: 压缩空气
+              checkpoints: []
+            - id: steam_system
+              name: Steam System
+              name_zh: 蒸汽系统
+              checkpoints: []
+        - id: lighting_ventilation
+          name: Lighting & Ventilation
+          name_zh: 照明通风
+          total_checkpoints: 0
+          categories:
+            - id: lighting
+              name: Lighting
+              name_zh: 照明
+              checkpoints: []
+            - id: ventilation
+              name: Ventilation
+              name_zh: 通风
+              checkpoints: []
+            - id: drainage
+              name: Drainage
+              name_zh: 排水
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 4: Personnel Hygiene (人员卫生)
+    # ═══════════════════════════════════════════════════════════════
+    - id: personnel_hygiene
+      name: Personnel Hygiene
+      name_zh: 人员卫生
+      status: placeholder
+      description: 涵盖健康证、洗手消毒、工作服、人员卫生管理等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: health_management
+          name: Health Management
+          name_zh: 健康管理
+          total_checkpoints: 0
+          categories:
+            - id: health_certificates
+              name: Health Certificates
+              name_zh: 健康证
+              checkpoints: []
+            - id: illness_reporting
+              name: Illness Reporting
+              name_zh: 患病报告
+              checkpoints: []
+            - id: annual_health_checks
+              name: Annual Health Checks
+              name_zh: 年度体检
+              checkpoints: []
+        - id: hand_washing_sanitation
+          name: Hand Washing & Sanitation
+          name_zh: 洗手消毒
+          total_checkpoints: 0
+          categories:
+            - id: hand_wash_stations
+              name: Hand Wash Stations
+              name_zh: 洗手设施
+              checkpoints: []
+            - id: hand_sanitizing
+              name: Hand Sanitizing
+              name_zh: 手部消毒
+              checkpoints: []
+            - id: glove_management
+              name: Glove Management
+              name_zh: 手套管理
+              checkpoints: []
+        - id: protective_clothing
+          name: Protective Clothing
+          name_zh: 工作服管理
+          total_checkpoints: 0
+          categories:
+            - id: uniform_requirements
+              name: Uniform Requirements
+              name_zh: 工作服要求
+              checkpoints: []
+            - id: changing_rooms
+              name: Changing Rooms
+              name_zh: 更衣室
+              checkpoints: []
+            - id: personal_items
+              name: Personal Items
+              name_zh: 个人物品
+              checkpoints: []
+        - id: personnel_training
+          name: Personnel Training
+          name_zh: 人员培训
+          total_checkpoints: 0
+          categories:
+            - id: hygiene_training
+              name: Hygiene Training
+              name_zh: 卫生培训
+              checkpoints: []
+            - id: food_safety_training
+              name: Food Safety Training
+              name_zh: 食品安全培训
+              checkpoints: []
+            - id: personnel_training_records
+              name: Training Records
+              name_zh: 培训记录
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 5: Cleaning and Sanitation (清洗消毒)
+    # ═══════════════════════════════════════════════════════════════
+    - id: cleaning_and_sanitation
+      name: Cleaning and Sanitation
+      name_zh: 清洗消毒
+      status: placeholder
+      description: 涵盖CIP清洗、设备消毒、环境消毒、消毒剂管理等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: cip_cleaning
+          name: CIP Cleaning
+          name_zh: CIP清洗
+          total_checkpoints: 0
+          categories:
+            - id: cip_program
+              name: CIP Program
+              name_zh: CIP程序
+              checkpoints: []
+            - id: cip_records
+              name: CIP Records
+              name_zh: CIP记录
+              checkpoints: []
+            - id: cip_verification
+              name: CIP Verification
+              name_zh: CIP验证
+              checkpoints: []
+        - id: equipment_sanitation
+          name: Equipment Sanitation
+          name_zh: 设备消毒
+          total_checkpoints: 0
+          categories:
+            - id: sanitation_schedule
+              name: Sanitation Schedule
+              name_zh: 消毒计划
+              checkpoints: []
+            - id: sanitation_records
+              name: Sanitation Records
+              name_zh: 消毒记录
+              checkpoints: []
+        - id: environmental_sanitation
+          name: Environmental Sanitation
+          name_zh: 环境消毒
+          total_checkpoints: 0
+          categories:
+            - id: surface_cleaning
+              name: Surface Cleaning
+              name_zh: 表面清洁
+              checkpoints: []
+            - id: drain_sanitation
+              name: Drain Sanitation
+              name_zh: 地沟清洁
+              checkpoints: []
+            - id: air_quality
+              name: Air Quality
+              name_zh: 空气质量
+              checkpoints: []
+        - id: chemical_management
+          name: Chemical Management
+          name_zh: 化学品管理
+          total_checkpoints: 0
+          categories:
+            - id: chemical_approval
+              name: Chemical Approval
+              name_zh: 化学品审批
+              checkpoints: []
+            - id: chemical_storage
+              name: Chemical Storage
+              name_zh: 化学品贮存
+              checkpoints: []
+            - id: chemical_dilution
+              name: Chemical Dilution
+              name_zh: 化学品稀释
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 6: Pest Control (虫害控制)
+    # ═══════════════════════════════════════════════════════════════
+    - id: pest_control
+      name: Pest Control
+      name_zh: 虫害控制
+      status: placeholder
+      description: 涵盖虫害监控、消杀记录、虫害趋势分析等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: pest_monitoring
+          name: Pest Monitoring
+          name_zh: 虫害监控
+          total_checkpoints: 0
+          categories:
+            - id: monitoring_devices
+              name: Monitoring Devices
+              name_zh: 监控装置
+              checkpoints: []
+            - id: monitoring_records
+              name: Monitoring Records
+              name_zh: 监控记录
+              checkpoints: []
+            - id: trend_analysis
+              name: Trend Analysis
+              name_zh: 趋势分析
+              checkpoints: []
+        - id: pest_treatment
+          name: Pest Treatment
+          name_zh: 消杀管理
+          total_checkpoints: 0
+          categories:
+            - id: treatment_records
+              name: Treatment Records
+              name_zh: 消杀记录
+              checkpoints: []
+            - id: treatment_certification
+              name: Treatment Certification
+              name_zh: 消杀资质
+              checkpoints: []
+        - id: facility_barriers
+          name: Facility Barriers
+          name_zh: 设施防虫防鼠
+          total_checkpoints: 0
+          categories:
+            - id: rodent_barriers
+              name: Rodent Barriers
+              name_zh: 防鼠设施
+              checkpoints: []
+            - id: insect_controls
+              name: Insect Controls
+              name_zh: 防虫设施
+              checkpoints: []
+            - id: building_sealing
+              name: Building Sealing
+              name_zh: 建筑封堵
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 7: Warehousing (仓储物流)
+    # ═══════════════════════════════════════════════════════════════
+    - id: warehousing
+      name: Warehousing
+      name_zh: 仓储物流
+      status: placeholder
+      description: 涵盖成品仓库、物流运输、温控管理等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: finished_product_storage
+          name: Finished Product Storage
+          name_zh: 成品贮存
+          total_checkpoints: 0
+          categories:
+            - id: storage_conditions
+              name: Storage Conditions
+              name_zh: 贮存条件
+              checkpoints: []
+            - id: stock_rotation
+              name: Stock Rotation
+              name_zh: 库存周转
+              checkpoints: []
+            - id: inventory_accuracy
+              name: Inventory Accuracy
+              name_zh: 库存准确性
+              checkpoints: []
+        - id: cold_chain
+          name: Cold Chain
+          name_zh: 冷链管理
+          total_checkpoints: 0
+          categories:
+            - id: cold_storage
+              name: Cold Storage
+              name_zh: 冷库管理
+              checkpoints: []
+            - id: temperature_monitoring
+              name: Temperature Monitoring
+              name_zh: 温度监控
+              checkpoints: []
+            - id: temperature_alarms
+              name: Temperature Alarms
+              name_zh: 温度报警
+              checkpoints: []
+        - id: transportation
+          name: Transportation
+          name_zh: 物流运输
+          total_checkpoints: 0
+          categories:
+            - id: transport_vehicles
+              name: Transport Vehicles
+              name_zh: 运输车辆
+              checkpoints: []
+            - id: loading_unloading
+              name: Loading / Unloading
+              name_zh: 装卸管理
+              checkpoints: []
+            - id: transport_records
+              name: Transport Records
+              name_zh: 运输记录
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 8: Traceability (追溯体系)
+    # ═══════════════════════════════════════════════════════════════
+    - id: traceability
+      name: Traceability
+      name_zh: 追溯体系
+      status: placeholder
+      description: 涵盖原料追溯、成品追溯、模拟召回演练等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: raw_material_traceability
+          name: Raw Material Traceability
+          name_zh: 原料追溯
+          total_checkpoints: 0
+          categories:
+            - id: batch_traceability
+              name: Batch Traceability
+              name_zh: 批次追溯
+              checkpoints: []
+            - id: supplier_lot_mapping
+              name: Supplier Lot Mapping
+              name_zh: 供应商批号对应
+              checkpoints: []
+        - id: finished_product_traceability
+          name: Finished Product Traceability
+          name_zh: 成品追溯
+          total_checkpoints: 0
+          categories:
+            - id: product_codes
+              name: Product Codes
+              name_zh: 产品编码
+              checkpoints: []
+            - id: distribution_records
+              name: Distribution Records
+              name_zh: 分销记录
+              checkpoints: []
+        - id: recall_simulation
+          name: Recall Simulation
+          name_zh: 模拟召回
+          total_checkpoints: 0
+          categories:
+            - id: recall_plan
+              name: Recall Plan
+              name_zh: 召回计划
+              checkpoints: []
+            - id: recall_drill
+              name: Recall Drill
+              name_zh: 召回演练
+              checkpoints: []
+            - id: recall_timing
+              name: Recall Timing
+              name_zh: 召回时效
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 9: HACCP (HACCP体系)
+    # ═══════════════════════════════════════════════════════════════
+    - id: haccp
+      name: HACCP
+      name_zh: HACCP体系
+      status: placeholder
+      description: 涵盖HACCP计划、危害分析、关键限值制定等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: haccp_plan
+          name: HACCP Plan
+          name_zh: HACCP计划
+          total_checkpoints: 0
+          categories:
+            - id: plan_documentation
+              name: Plan Documentation
+              name_zh: 计划文件
+              checkpoints: []
+            - id: plan_approval
+              name: Plan Approval
+              name_zh: 计划审批
+              checkpoints: []
+            - id: plan_updates
+              name: Plan Updates
+              name_zh: 计划更新
+              checkpoints: []
+        - id: hazard_analysis
+          name: Hazard Analysis
+          name_zh: 危害分析
+          total_checkpoints: 0
+          categories:
+            - id: biological_hazards
+              name: Biological Hazards
+              name_zh: 生物危害
+              checkpoints: []
+            - id: chemical_hazards
+              name: Chemical Hazards
+              name_zh: 化学危害
+              checkpoints: []
+            - id: physical_hazards
+              name: Physical Hazards
+              name_zh: 物理危害
+              checkpoints: []
+        - id: prerequisite_programs
+          name: Prerequisite Programs
+          name_zh: 前提方案
+          total_checkpoints: 0
+          categories:
+            - id: prp_implementation
+              name: PRP Implementation
+              name_zh: PRP实施
+              checkpoints: []
+            - id: prp_verification
+              name: PRP Verification
+              name_zh: PRP验证
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 10: CCP (关键控制点)
+    # ═══════════════════════════════════════════════════════════════
+    - id: ccp
+      name: CCP
+      name_zh: 关键控制点
+      status: placeholder
+      description: 涵盖CCP监控、纠偏、验证等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: ccp_monitoring
+          name: CCP Monitoring
+          name_zh: CCP监控
+          total_checkpoints: 0
+          categories:
+            - id: critical_limits
+              name: Critical Limits
+              name_zh: 关键限值
+              checkpoints: []
+            - id: monitoring_methods
+              name: Monitoring Methods
+              name_zh: 监控方法
+              checkpoints: []
+            - id: monitoring_frequency
+              name: Monitoring Frequency
+              name_zh: 监控频率
+              checkpoints: []
+        - id: ccp_corrective_actions
+          name: Corrective Actions
+          name_zh: 纠偏行动
+          total_checkpoints: 0
+          categories:
+            - id: deviation_handling
+              name: Deviation Handling
+              name_zh: 偏差处理
+              checkpoints: []
+            - id: product_disposition
+              name: Product Disposition
+              name_zh: 产品处置
+              checkpoints: []
+        - id: ccp_verification
+          name: CCP Verification
+          name_zh: CCP验证
+          total_checkpoints: 0
+          categories:
+            - id: verification_activities
+              name: Verification Activities
+              name_zh: 验证活动
+              checkpoints: []
+            - id: verification_records
+              name: Verification Records
+              name_zh: 验证记录
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 11: GMP (良好操作规范)
+    # ═══════════════════════════════════════════════════════════════
+    - id: gmp
+      name: GMP
+      name_zh: 良好操作规范
+      status: placeholder
+      description: 涵盖GMP合规、SSOP执行等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: gmp_compliance
+          name: GMP Compliance
+          name_zh: GMP合规
+          total_checkpoints: 0
+          categories:
+            - id: facility_gmp
+              name: Facility GMP
+              name_zh: 设施GMP
+              checkpoints: []
+            - id: operational_gmp
+              name: Operational GMP
+              name_zh: 操作GMP
+              checkpoints: []
+        - id: ssop_execution
+          name: SSOP Execution
+          name_zh: SSOP执行
+          total_checkpoints: 0
+          categories:
+            - id: ssop_procedures
+              name: SSOP Procedures
+              name_zh: SSOP程序
+              checkpoints: []
+            - id: ssop_records
+              name: SSOP Records
+              name_zh: SSOP记录
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 12: Laboratory (实验室)
+    # ═══════════════════════════════════════════════════════════════
+    - id: laboratory
+      name: Laboratory
+      name_zh: 实验室
+      status: placeholder
+      description: 涵盖实验室管理、检验能力、试剂管理、留样管理等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: lab_management
+          name: Lab Management
+          name_zh: 实验室管理
+          total_checkpoints: 0
+          categories:
+            - id: lab_organization
+              name: Lab Organization
+              name_zh: 实验室组织
+              checkpoints: []
+            - id: lab_sop
+              name: Lab SOP
+              name_zh: 实验室SOP
+              checkpoints: []
+        - id: testing_capability
+          name: Testing Capability
+          name_zh: 检验能力
+          total_checkpoints: 0
+          categories:
+            - id: testing_scope
+              name: Testing Scope
+              name_zh: 检测范围
+              checkpoints: []
+            - id: testing_methods
+              name: Testing Methods
+              name_zh: 检测方法
+              checkpoints: []
+            - id: proficiency_testing
+              name: Proficiency Testing
+              name_zh: 能力验证
+              checkpoints: []
+        - id: reagent_management
+          name: Reagent Management
+          name_zh: 试剂管理
+          total_checkpoints: 0
+          categories:
+            - id: reagent_inventory
+              name: Reagent Inventory
+              name_zh: 试剂库存
+              checkpoints: []
+            - id: reagent_expiry
+              name: Reagent Expiry
+              name_zh: 试剂有效期
+              checkpoints: []
+        - id: sample_retention
+          name: Sample Retention
+          name_zh: 留样管理
+          total_checkpoints: 0
+          categories:
+            - id: retention_program
+              name: Retention Program
+              name_zh: 留样制度
+              checkpoints: []
+            - id: retention_storage
+              name: Retention Storage
+              name_zh: 留样贮存
+              checkpoints: []
+        - id: microbiological_testing
+          name: Microbiological Testing
+          name_zh: 微生物检测
+          total_checkpoints: 0
+          categories:
+            - id: environmental_monitoring
+              name: Environmental Monitoring
+              name_zh: 环境监控
+              checkpoints: []
+            - id: product_testing
+              name: Product Testing
+              name_zh: 产品检测
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 13: Food Defense (食品防护)
+    # ═══════════════════════════════════════════════════════════════
+    - id: food_defense
+      name: Food Defense
+      name_zh: 食品防护
+      status: placeholder
+      description: 涵盖食品防护计划、出入管控、监控系统等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: defense_plan
+          name: Defense Plan
+          name_zh: 防护计划
+          total_checkpoints: 0
+          categories:
+            - id: threat_assessment
+              name: Threat Assessment
+              name_zh: 威胁评估
+              checkpoints: []
+            - id: defense_procedures
+              name: Defense Procedures
+              name_zh: 防护程序
+              checkpoints: []
+        - id: access_control
+          name: Access Control
+          name_zh: 出入管控
+          total_checkpoints: 0
+          categories:
+            - id: facility_access
+              name: Facility Access
+              name_zh: 厂区出入
+              checkpoints: []
+            - id: personnel_access
+              name: Personnel Access
+              name_zh: 人员权限
+              checkpoints: []
+        - id: surveillance
+          name: Surveillance
+          name_zh: 监控系统
+          total_checkpoints: 0
+          categories:
+            - id: cctv_system
+              name: CCTV System
+              name_zh: 视频监控
+              checkpoints: []
+            - id: security_patrols
+              name: Security Patrols
+              name_zh: 安全巡逻
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 14: Food Fraud Prevention (食品欺诈预防)
+    # ═══════════════════════════════════════════════════════════════
+    - id: food_fraud_prevention
+      name: Food Fraud Prevention
+      name_zh: 食品欺诈预防
+      status: placeholder
+      description: 涵盖原料掺假评估、供应链脆弱性分析等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: vulnerability_assessment
+          name: Vulnerability Assessment
+          name_zh: 脆弱性评估
+          total_checkpoints: 0
+          categories:
+            - id: raw_material_assessment
+              name: Raw Material Assessment
+              name_zh: 原料脆弱性
+              checkpoints: []
+            - id: supply_chain_mapping
+              name: Supply Chain Mapping
+              name_zh: 供应链图谱
+              checkpoints: []
+        - id: raw_material_fraud
+          name: Raw Material Fraud
+          name_zh: 原料掺假
+          total_checkpoints: 0
+          categories:
+            - id: adulteration_risks
+              name: Adulteration Risks
+              name_zh: 掺假风险
+              checkpoints: []
+            - id: authenticity_testing
+              name: Authenticity Testing
+              name_zh: 真实性检测
+              checkpoints: []
+        - id: supply_chain_monitoring
+          name: Supply Chain Monitoring
+          name_zh: 供应链监控
+          total_checkpoints: 0
+          categories:
+            - id: supplier_audits
+              name: Supplier Audits
+              name_zh: 供应商审核
+              checkpoints: []
+            - id: market_intelligence
+              name: Market Intelligence
+              name_zh: 市场情报
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 15: Management System (管理体系)
+    # ═══════════════════════════════════════════════════════════════
+    - id: management_system
+      name: Management System
+      name_zh: 管理体系
+      status: placeholder
+      description: 涵盖质量方针、内审、管理评审、文件管理等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: quality_policy
+          name: Quality Policy
+          name_zh: 质量方针
+          total_checkpoints: 0
+          categories:
+            - id: policy_definition
+              name: Policy Definition
+              name_zh: 方针制定
+              checkpoints: []
+            - id: policy_communication
+              name: Policy Communication
+              name_zh: 方针传达
+              checkpoints: []
+        - id: internal_audit
+          name: Internal Audit
+          name_zh: 内部审核
+          total_checkpoints: 0
+          categories:
+            - id: audit_program
+              name: Audit Program
+              name_zh: 审核方案
+              checkpoints: []
+            - id: audit_execution
+              name: Audit Execution
+              name_zh: 审核执行
+              checkpoints: []
+            - id: audit_follow_up
+              name: Audit Follow-Up
+              name_zh: 审核跟进
+              checkpoints: []
+        - id: management_review
+          name: Management Review
+          name_zh: 管理评审
+          total_checkpoints: 0
+          categories:
+            - id: review_input
+              name: Review Input
+              name_zh: 评审输入
+              checkpoints: []
+            - id: review_output
+              name: Review Output
+              name_zh: 评审输出
+              checkpoints: []
+            - id: review_frequency
+              name: Review Frequency
+              name_zh: 评审频率
+              checkpoints: []
+        - id: document_control
+          name: Document Control
+          name_zh: 文件管理
+          total_checkpoints: 0
+          categories:
+            - id: document_approval
+              name: Document Approval
+              name_zh: 文件审批
+              checkpoints: []
+            - id: document_distribution
+              name: Document Distribution
+              name_zh: 文件发放
+              checkpoints: []
+            - id: document_updates
+              name: Document Updates
+              name_zh: 文件更新
+              checkpoints: []
+        - id: training_management
+          name: Training Management
+          name_zh: 培训管理
+          total_checkpoints: 0
+          categories:
+            - id: training_plan
+              name: Training Plan
+              name_zh: 培训计划
+              checkpoints: []
+            - id: management_training_records
+              name: Training Records
+              name_zh: 培训记录
+              checkpoints: []
+            - id: competency_assessment
+              name: Competency Assessment
+              name_zh: 能力评估
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 16: Regulatory Compliance (法规合规)
+    # ═══════════════════════════════════════════════════════════════
+    - id: regulatory_compliance
+      name: Regulatory Compliance
+      name_zh: 法规合规
+      status: placeholder
+      description: 涵盖法规更新跟踪、许可证管理、合规性评价等审核检查点
+      total_checkpoints: 0
+      sub_domains:
+        - id: regulation_tracking
+          name: Regulation Tracking
+          name_zh: 法规跟踪
+          total_checkpoints: 0
+          categories:
+            - id: regulation_watch
+              name: Regulation Watch
+              name_zh: 法规监测
+              checkpoints: []
+            - id: impact_assessment
+              name: Impact Assessment
+              name_zh: 影响评估
+              checkpoints: []
+        - id: license_management
+          name: License Management
+          name_zh: 许可证管理
+          total_checkpoints: 0
+          categories:
+            - id: production_license
+              name: Production License
+              name_zh: 生产许可证
+              checkpoints: []
+            - id: license_renewal
+              name: License Renewal
+              name_zh: 许可证续期
+              checkpoints: []
+        - id: compliance_evaluation
+          name: Compliance Evaluation
+          name_zh: 合规性评价
+          total_checkpoints: 0
+          categories:
+            - id: self_inspection
+              name: Self Inspection
+              name_zh: 自查
+              checkpoints: []
+            - id: regulatory_submissions
+              name: Regulatory Submissions
+              name_zh: 法规申报
+              checkpoints: []
+            - id: regulatory_audits
+              name: Regulatory Audits
+              name_zh: 监管审核
+              checkpoints: []
+
+    # ═══════════════════════════════════════════════════════════════
+    # Domain 17: Production Process Management (生产过程管理)
+    # ═══════════════════════════════════════════════════════════════
+    - id: production_process_management
+      name: Production Process Management
+      name_zh: 生产过程管理
+      status: active
+      total_checkpoints: 20
+      sub_domains:
+
+        - id: process_control
+          name: Process Control
+          name_zh: 生产过程控制
+          total_checkpoints: 20
+          categories:
+            - id: process_parameter_monitoring
+              name: Process Parameter Monitoring
+              name_zh: 工艺参数监控
+              checkpoints:
+                - CP-BEV-PP-001
+                - CP-BEV-PP-002
+                - CP-BEV-PP-003
+                - CP-BEV-PP-004
+                - CP-BEV-PP-005
+                - CP-BEV-PP-006
+                - CP-BEV-PP-007
+                - CP-BEV-PP-008
+            - id: process_records
+              name: Process Records
+              name_zh: 过程记录
+              checkpoints:
+                - CP-BEV-PP-009
+                - CP-BEV-PP-010
+                - CP-BEV-PP-011
+                - CP-BEV-PP-012
+            - id: process_deviation
+              name: Process Deviation Handling
+              name_zh: 过程偏差处理
+              checkpoints:
+                - CP-BEV-PP-013
+                - CP-BEV-PP-014
+                - CP-BEV-PP-015
+            - id: process_verification
+              name: Process Verification
+              name_zh: 过程验证
+              checkpoints:
+                - CP-BEV-PP-016
+                - CP-BEV-PP-017
+                - CP-BEV-PP-018
+                - CP-BEV-PP-019
+                - CP-BEV-PP-020
+
+        - id: critical_control_points
+          name: Critical Control Points
+          name_zh: 关键控制点管理
+          total_checkpoints: 0
+          categories:
+            - id: ccp_identification
+              name: CCP Identification
+              name_zh: CCP识别
+              checkpoints: []
+            - id: ppm_critical_limits
+              name: Critical Limits
+              name_zh: 关键限值
+              checkpoints: []
+            - id: monitoring_procedures
+              name: Monitoring Procedures
+              name_zh: 监控程序
+              checkpoints: []
+            - id: corrective_action_procedures
+              name: Corrective Action Procedures
+              name_zh: 纠偏程序
+              checkpoints: []
+            - id: ppm_ccp_verification
+              name: CCP Verification
+              name_zh: CCP验证
+              checkpoints: []
+
+        - id: production_environment
+          name: Production Environment
+          name_zh: 生产环境管理
+          total_checkpoints: 0
+          categories:
+            - id: cleanliness_standards
+              name: Cleanliness Standards
+              name_zh: 清洁标准
+              checkpoints: []
+            - id: ppm_environmental_monitoring
+              name: Environmental Monitoring
+              name_zh: 环境监控
+              checkpoints: []
+            - id: facility_hygiene
+              name: Facility Hygiene
+              name_zh: 设施卫生
+              checkpoints: []
+            - id: hygiene_zones
+              name: Hygiene Zones
+              name_zh: 卫生区域管理
+              checkpoints: []
+
+        - id: cross_contamination_control
+          name: Cross Contamination Control
+          name_zh: 交叉污染控制
+          total_checkpoints: 0
+          categories:
+            - id: allergen_management
+              name: Allergen Management
+              name_zh: 过敏原管理
+              checkpoints: []
+            - id: physical_segregation
+              name: Physical Segregation
+              name_zh: 物理隔离
+              checkpoints: []
+            - id: cleaning_protocols
+              name: Cleaning Protocols
+              name_zh: 清洁方案
+              checkpoints: []
+            - id: waste_handling
+              name: Waste Handling
+              name_zh: 废弃物处理
+              checkpoints: []
+
+        - id: ppm_traceability
+          name: Traceability
+          name_zh: 产品追溯
+          total_checkpoints: 0
+          categories:
+            - id: batch_coding
+              name: Batch / Lot Coding
+              name_zh: 批次编码
+              checkpoints: []
+            - id: traceability_system
+              name: Traceability System
+              name_zh: 追溯系统
+              checkpoints: []
+            - id: mock_recall
+              name: Mock Recall
+              name_zh: 模拟召回
+              checkpoints: []
+            - id: ppm_distribution_records
+              name: Distribution Records
+              name_zh: 分销记录
+              checkpoints: []
+
+        - id: rework_management
+          name: Rework Management
+          name_zh: 返工管理
+          total_checkpoints: 0
+          categories:
+            - id: rework_authorization
+              name: Rework Authorization
+              name_zh: 返工授权
+              checkpoints: []
+            - id: rework_process
+              name: Rework Process Control
+              name_zh: 返工过程控制
+              checkpoints: []
+            - id: rework_records
+              name: Rework Records
+              name_zh: 返工记录
+              checkpoints: []
+            - id: rework_verification
+              name: Rework Verification
+              name_zh: 返工验证
+              checkpoints: []
+
+        - id: product_release
+          name: Product Release
+          name_zh: 产品放行
+          total_checkpoints: 0
+          categories:
+            - id: release_criteria
+              name: Release Criteria
+              name_zh: 放行标准
+              checkpoints: []
+            - id: release_authorization
+              name: Release Authorization
+              name_zh: 放行授权
+              checkpoints: []
+            - id: hold_release
+              name: Hold and Release
+              name_zh: 扣留放行
+              checkpoints: []
+            - id: release_documentation
+              name: Release Documentation
+              name_zh: 放行文件
+              checkpoints: []

@@ -11,5 +11,16 @@ Thumbs.db
 secrets/
 .venv/
 
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
 # 同步脚本产生的临时目录
 .tmp/

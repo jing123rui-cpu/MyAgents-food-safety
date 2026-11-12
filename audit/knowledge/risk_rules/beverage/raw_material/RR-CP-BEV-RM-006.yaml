@@ -1,0 +1,51 @@
+id: RR-CP-BEV-RM-006
+checkpoint_id: CP-BEV-RM-006
+title: 进货查验记录完整性检查
+version: "1.0"
+domain: 原料验收
+category: 进货查验记录
+risk_level: Critical
+purpose: 确认企业已对每批采购原料进行了进货查验并如实记录，记录内容包括原料名称、规格、数量、生产日期/批号、保质期、供应商名称、进货日期、查验结果、查验人员等信息。
+decision_logic:
+  - condition: 记录完整、连续、签字齐全
+    result: PASS
+  - condition: 记录缺少1-2个非关键字段
+    result: WARNING
+    severity: Low
+  - condition: 记录中连续3天空白且企业有采购
+    result: FAIL
+    severity: Critical
+  - condition: 记录笔迹完全相同且日期跨度大
+    result: WARNING
+    severity: Medium
+  - condition: 记录显示进货日期为节假日
+    result: WARNING
+    severity: Medium
+required_evidence:
+  - 进货查验记录（10批次）
+  - 进货查验制度
+pass_condition: 记录完整、连续、及时
+fail_condition: 完全无记录或记录缺失率超过30%
+warning_condition: 记录不完整或存在明显不连续
+legal_basis:
+  - REG-FOOD-SAFETY-LAW
+  - REG-GB-14881
+risk_description: 完全无记录或记录缺失率超过30%
+typical_nonconformities:
+  - 完全无进货查验记录
+  - 记录缺失关键字段
+  - 记录不连续（日期空档）
+  - 记录签字不全
+  - 记录非当日填写（事后补填）
+recommended_actions:
+  - 查证: 完全无进货查验记录 — 要求企业立即建立记录制度
+  - 查证: 记录缺失关键字段 — 完善记录模板
+  - 查证: 记录不连续（日期空档） — 追溯缺失时段原料去向
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-FOOD-SAFETY-LAW
+    - REG-GB-14881
+  recommendation: ""

@@ -1,0 +1,51 @@
+id: RR-CP-BEV-RM-002
+checkpoint_id: CP-BEV-RM-002
+title: 供应商产品检验报告审查
+version: "1.0"
+domain: 供应商管理
+category: 供应商资质审核
+risk_level: Critical
+purpose: 确认供应商提供的每批原料均附有合格的产品检验报告（COA），报告内容完整、检测项目覆盖相关标准要求。
+decision_logic:
+  - condition: 报告完整且结果合格
+    result: PASS
+  - condition: 缺少1批次报告
+    result: WARNING
+    severity: Medium
+  - condition: 报告无检测章但内容完整
+    result: WARNING
+    severity: Low
+  - condition: 报告检测结果超标
+    result: FAIL
+    severity: Critical
+  - condition: 报告中检测项目明显少于标准要求
+    result: WARNING
+    severity: High
+required_evidence:
+  - 供应商检验报告（COA）
+  - 进货台账对应记录
+pass_condition: 全部批次报告齐全、正确
+fail_condition: 多批次无检验报告或报告结果超标
+warning_condition: 部分批次缺报告或报告内容不完整
+legal_basis:
+  - REG-FOOD-SAFETY-LAW
+  - REG-GB-14881
+risk_description: 多批次无检验报告或报告结果超标
+typical_nonconformities:
+  - 供应商完全未提供检验报告
+  - 检验报告与批次不对应
+  - 检测项目不全
+  - 报告无签名或盖章
+  - 报告检测结果超标
+recommended_actions:
+  - 查证: 供应商完全未提供检验报告 — 追溯该批次原料去向
+  - 查证: 检验报告与批次不对应 — 要求企业提供正确报告
+  - 查证: 报告检测结果超标 — 立即隔离该批次原料
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-FOOD-SAFETY-LAW
+    - REG-GB-14881
+  recommendation: ""

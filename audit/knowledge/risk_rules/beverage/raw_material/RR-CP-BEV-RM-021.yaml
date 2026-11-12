@@ -1,0 +1,45 @@
+id: RR-CP-BEV-RM-021
+checkpoint_id: CP-BEV-RM-021
+title: 瓶盖密封性检验检查
+version: "1.0"
+domain: 包装材料管理
+category: 包材验收
+risk_level: Critical
+purpose: 确认企业对瓶盖等密封件进行了必要的验收检验（外观、尺寸、密封性测试），确保瓶盖能够有效密封产品。
+decision_logic:
+  - condition: 有密封性检验记录且合格
+    result: PASS
+  - condition: 企业称使用自动在线扭矩检测替代来料检验
+    result: WARNING
+    severity: Low
+  - condition: 瓶盖贮存区域无防尘措施
+    result: WARNING
+    severity: Low
+  - condition: 瓶盖检验记录长期全部合格（数据异常一致）
+    result: WARNING
+    severity: Medium
+required_evidence:
+  - 瓶盖验收标准
+  - 瓶盖验收记录（含密封性测试结果）
+pass_condition: 检验项目齐全、记录完整
+fail_condition: 无密封性检验或检验发现不合格仍使用
+warning_condition: 有检验但频率不足或项目不全
+legal_basis:
+  - REG-GB-14881
+risk_description: 无密封性检验或检验发现不合格仍使用
+typical_nonconformities:
+  - 无瓶盖密封性检验
+  - 瓶盖贮存环境脏污
+  - 瓶盖验收记录缺少尺寸检测
+  - 不同供应商瓶盖混放
+recommended_actions:
+  - 查证: 无瓶盖密封性检验 — 建立密封性检验程序
+  - 查证: 瓶盖贮存环境脏污 — 改善贮存条件
+  - 查证: 瓶盖验收记录缺少尺寸检测 — 完善检测项目
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-GB-14881
+  recommendation: ""

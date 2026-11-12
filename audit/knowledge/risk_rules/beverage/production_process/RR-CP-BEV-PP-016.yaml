@@ -1,0 +1,46 @@
+id: RR-CP-BEV-PP-016
+checkpoint_id: CP-BEV-PP-016
+title: 工艺确认
+version: "1.0"
+domain: 生产过程控制
+category: 过程验证
+risk_level: High
+purpose: 确认关键工艺已进行验证/确认，验证方案科学、数据完整、结论明确，工艺参数在验证范围内使用。
+decision_logic:
+  - condition: 关键工艺有验证报告，数据充分，结论明确，工艺在验证范围内运行
+    result: PASS
+  - condition: 验证报告完整但已接近复验证期限（1个月内）
+    result: PASS
+  - condition: 关键工艺无验证报告即投入生产
+    result: FAIL
+  - condition: 实际工艺参数超出验证范围
+    result: FAIL
+  - condition: 验证报告数据不充分或结论含糊
+    result: FAIL
+required_evidence:
+  - 工艺验证报告
+pass_condition: 工艺验证报告完整、数据充分、结论明确、工艺在验证范围内运行
+fail_condition: 关键工艺未进行验证或验证报告结论不明确
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 关键工艺未经验证即投入生产可能导致不可控制的食品安全风险
+typical_nonconformities:
+  - 关键工艺无验证报告
+  - 验证报告数据不充分
+  - 验证报告结论含糊
+  - 实际工艺参数超出验证范围
+  - 验证报告超过复验证期限
+recommended_actions:
+  - 查证: 关键工艺无验证报告 — 要求企业立即补充验证
+  - 查证: 实际工艺参数超出验证范围 — 停止生产并重新验证
+  - 查证: 验证报告超过复验证期限 — 安排重新验证
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

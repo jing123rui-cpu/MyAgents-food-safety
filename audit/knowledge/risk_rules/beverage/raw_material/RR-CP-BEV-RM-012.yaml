@@ -1,0 +1,44 @@
+id: RR-CP-BEV-RM-012
+checkpoint_id: CP-BEV-RM-012
+title: 原料退货/让步接收记录检查
+version: "1.0"
+domain: 原料验收
+category: 不合格原料处理
+risk_level: High
+purpose: 确认企业对验收不合格的原料有明确的退货或让步接收流程，让步接收时经过了风险评估和审批，记录完整。
+decision_logic:
+  - condition: 无不合格原料记录且企业确认无不合格情况
+    result: PASS
+  - condition: 有不合格记录且处理记录完整
+    result: PASS
+  - condition: 有让步接收但无审批签字
+    result: FAIL
+    severity: High
+  - condition: 让步接收的缺陷涉及食品安全指标
+    result: FAIL
+    severity: Critical
+required_evidence:
+  - 让步接收审批记录
+  - 退货记录
+pass_condition: 有完整退货/让步接收流程和记录
+fail_condition: 让步接收未经审批直接使用
+warning_condition: 让步接收有审批但风险评估不充分
+legal_basis:
+  - REG-GB-14881
+risk_description: 让步接收未经审批直接使用
+typical_nonconformities:
+  - 让步接收无任何审批
+  - 让步接收审批人不是有权限人员
+  - 不合格原料长期堆放未退货也未报废
+  - 退货无记录
+recommended_actions:
+  - 查证: 让步接收无任何审批 — 补充审批流程
+  - 查证: 让步接收审批人不是有权限人员 — 明确审批权限
+  - 查证: 不合格原料长期堆放未退货也未报废 — 及时处置
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

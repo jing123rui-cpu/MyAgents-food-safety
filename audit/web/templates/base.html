@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}食品生产企业监督检查 Agent{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <h1>食品生产企业监督检查 Agent</h1>
+        <div class="sub">Food Audit Agent</div>
+    </div>
+    {% block content %}{% endblock %}
+    <div class="footer-bar">食品安全监督检查系统 v2.0</div>
+</div>
+{% block scripts %}{% endblock %}
+</body>
+</html>

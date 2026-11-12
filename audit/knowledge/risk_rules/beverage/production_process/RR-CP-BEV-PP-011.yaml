@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-011
+checkpoint_id: CP-BEV-PP-011
+title: 批次管理
+version: "1.0"
+domain: 生产过程控制
+category: 过程记录
+risk_level: High
+purpose: 确认批号编码规则合理且覆盖所有产品，每一批次产品有唯一批号，实现从原料到成品的全程追溯。
+decision_logic:
+  - condition: 批号编码规则文件完整，各批次唯一且连续，成品可追溯到原料批次
+    result: PASS
+  - condition: 批号编码规则存在但个别批次追溯链不完整（如部分原料信息缺失）
+    result: PASS
+  - condition: 无批号编码规则文件
+    result: FAIL
+  - condition: 同一产品出现重复批号
+    result: FAIL
+  - condition: 成品批号完全无法追溯到原料或生产信息
+    result: FAIL
+required_evidence:
+  - 批号编码规则文件
+  - 生产记录（5批次）
+pass_condition: 批号编码规则完整、各批次连续不重复、可追溯至原料
+fail_condition: 无批号编码规则或同一产品不同批次使用相同批号
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 批号编码不规范导致产品无法有效追溯，出现食品安全事件时无法召回
+typical_nonconformities:
+  - 无批号编码规则文件
+  - 同一产品出现重复批号
+  - 批号不连续或跳跃
+  - 成品批号无法追溯到原料批号
+  - 不同生产线批号编码规则不统一
+recommended_actions:
+  - 查证: 无批号编码规则文件 — 要求企业建立
+  - 查证: 同一产品出现重复批号 — 追溯该批号产品来源
+  - 查证: 成品批号无法追溯到原料 — 评估追溯体系完整性
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

@@ -1,81 +1,82 @@
 # MyAgents · 食品安全专家
 
-一个可共享、可同步的 Agent 仓库。当前内置 **食品安全专家** Agent，覆盖食品生产企业合规审查、法规标准解读、风险分级、检查前要点分析、整改与监督检查报告撰写。
+可共享、可同步的食品安全 Agent 仓库。分两层：
+
+| 层 | 位置 | 作用 |
+|---|---|---|
+| **Agent 层** | `.opencode/agent/` + `skills/` | 给大模型用的专家人格、方法论、报告模板 |
+| **引擎层** | `audit/` | 可运行的食品安全审核引擎（知识库 + 检索 + 风险规则 + 报告导出 + CLI/API/Web） |
+
+两层共享同一套业务口径：Agent 负责研判、解释、写作，引擎负责结构化知识与规则计算。
 
 ## 结构
 
 ```
 MyAgents/
-├── .opencode/
-│   └── agent/
-│       └── food-safety-expert.md        # Agent 定义（OpenCode primary agent）
-├── skills/
-│   └── food-safety-audit/
-│       ├── SKILL.md                     # 检查前风险分析方法论（6 步）
-│       ├── workflows/                   # 01~06 分步流程
-│       └── references/
-│           ├── 检查要点14项.md
-│           ├── 食品类别目录.md
-│           ├── risk-grading.md          # 风险分级与条款对应
-│           └── report-template.md       # 监督检查报告模板
-├── scripts/
-│   ├── sync.ps1                         # 拉取 / 安装 / 状态
-│   └── sync.cmd                         # 双击入口
-├── .upstream.json                       # 上游仓库记录（不含凭据）
+├── .opencode/agent/food-safety-expert.md    # 食品安全专家 Agent（primary）
+├── skills/food-safety-audit/                # 检查前风险分析方法论
+│   ├── SKILL.md
+│   ├── workflows/01~06
+│   └── references/{检查要点14项,食品类别目录,risk-grading,report-template}
+├── audit/                                   # 食品安全审核引擎（迁移自 Food-Audit-Agent）
+│   ├── main.py                              # CLI 入口
+│   ├── script/                              # 检索、规则引擎、工作流、AI、报告导出
+│   ├── knowledge/                           # 检查点、法规、风险规则、分类树
+│   ├── api/ · web/                          # FastAPI 与页面
+│   ├── skills/                              # 引擎侧 8 个技能（yaml）
+│   ├── docs/ · reports/ · tests/
+│   └── pyproject.toml · requirements.txt
+├── scripts/sync.ps1                         # 拉取 / 安装 / 状态
+├── .upstream.json                           # 上游记录（不含凭据）
 └── .gitignore
 ```
 
 ## 使用
 
-### 在本目录使用
+### 1. Agent
 
-用 OpenCode 打开 `D:\MyAgents`，切换 agent 到 `food-safety-expert` 即可。项目级 agent 会被自动发现。
-
-### 安装为全局 agent
+在 OpenCode 中打开本目录，选择 `food-safety-expert`；或安装到全局：
 
 ```powershell
-cd D:\MyAgents
 .\scripts\sync.ps1 -Install
 ```
 
-会复制到 `%USERPROFILE%\.config\opencode\agent\`，之后任何目录都能选用。
+对话示例：
+- 「按 GB 14881 审一下这份车间巡检记录」
+- 「饮料菌落总数超标，定性、分级、写整改要求」
+- 「小型食用油厂日常监督检查，先给检查前分析清单」
 
-### 直接对话示例
+### 2. 引擎
 
-- 「帮我按 GB 14881 审一下这份车间巡检记录」
-- 「这批饮料检出菌落总数超标，帮我定性、分级、写整改要求」
-- 「我要去一家小型食用油厂做日常监督检查，先给我检查前分析清单」
-- 「这条标签少了 SC 编号，属于第几条，怎么处罚」
+```powershell
+cd audit
+python main.py health                 # 知识库加载状态
+python main.py inspect --id CP-BEV-RM-001
+python main.py inspect --query 原料验收 --risk High
+python -m api.server                  # Web/API（见 audit/docs）
+```
+
+可选：设置 `DEEPSEEK_API_KEY` 启用 AI 分析；不设置时检索、规则、工作流仍可离线运行。
 
 ## 同步
 
-上游：`https://github.com/caiqfox821/MyAgents-food-safety`（分支 `main`）
+上游：`https://github.com/caiqfox821/MyAgents-food-safety`（`main`）
 
 ```powershell
-# 查看状态
 .\scripts\sync.ps1 -Status
-
-# 公开仓库直接拉
-.\scripts\sync.ps1 -Pull
-
-# 私有仓库：令牌只用于本次命令，不写入 .git/config
-$env:GITHUB_TOKEN = "github_pat_xxx"
-.\scripts\sync.ps1 -Pull -Token $env:GITHUB_TOKEN
+.\scripts\sync.ps1 -Pull                  # 公开仓库
+$env:GITHUB_TOKEN = "github_pat_xxx"; .\scripts\sync.ps1 -Pull -Token $env:GITHUB_TOKEN
 ```
 
-拉取策略为 `pull --ff-only`：只做快进合并，本地有改动时不会静默覆盖，冲突会显式失败。
+`--ff-only`：只做快进合并，本地有改动时显式失败，不静默覆盖。
 
-## 首次推送（仓库创建后）
+## 迁移说明
 
-```powershell
-cd D:\MyAgents
-git init -b main
-git add .
-git commit -m "feat: 食品安全专家 agent 与检查前分析技能包"
-git remote add origin https://github.com/caiqfox821/MyAgents-food-safety.git
-git push -u origin main
-```
+`audit/` 由 `D:\2026年\Food-Audit-Agent` 的工作区版本迁入（233 个文件，排除 `.git`、`__pycache__`、`.pytest_cache`）。
+原项目历史提交未随迁（原仓库工作区有 117 项未提交改动，以工作区为准）；如需保留历史，可后续用 `git subtree` 重建。
+
+`skills/food-safety-audit/` 来自 `D:\2026年\食品行业合规性检测要求生成器\skills\`，原文件已保留与本仓库一致的口径。
 
 ## 免责声明
 
-本仓库内容用于合规分析与审核辅助，不替代监管部门的行政决定，也不替代有资质检验机构的检测结论。法规与标准条款会修订，引用具体限量值前请核实现行有效版本。
+用于合规分析与审核辅助，不替代监管部门的行政决定，也不替代有资质检验机构的检测结论。法规与标准会修订，引用具体条款和限量值前请核实现行有效版本。

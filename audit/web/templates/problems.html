@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>请输入检查发现的问题</h2>
+    <form action="/ui/analyze" method="post">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="type" value="{{ ent_type }}">
+        <input type="hidden" name="auditor" value="{{ auditor }}">
+        <input type="hidden" name="date" value="{{ date }}">
+        <div class="form-group">
+            <textarea name="problems" rows="6" placeholder="一行一个问题&#10;例如：&#10;原料未离墙离地&#10;生产记录填写不完整&#10;车间排风扇未安装纱网" style="width:100%;padding:12px;font-size:15px;border:1px solid #aaa;font-family:inherit;"></textarea>
+        </div>
+        <div class="sample-hint">
+            <strong>输入说明：</strong>一行一个问题，输入完成后点击下方按钮。
+            <code>示例：供应商许可证过期</code>
+            <code>示例：生产记录填写不完整</code>
+            <code>示例：包装车间未设置防蝇设施</code>
+        </div>
+        <div class="text-center mt-20">
+            <button type="submit" class="btn btn-primary" style="font-size:18px;padding:14px 50px;">开始智能分析</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

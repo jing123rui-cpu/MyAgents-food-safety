@@ -1,0 +1,13 @@
+name: Risk Assessment
+version: 1.0.0
+description: Evaluates inspection evidence against risk rules to determine compliance status (compliant, non-compliant, not-applicable).
+category: Core Inspection
+engine: RuleEngine, RiskRule, Evidence
+inputs:
+  - evidence (List[Evidence]): Evidence items collected during inspection
+  - matched_checkpoints (List[Checkpoint]): Identified checkpoints
+outputs:
+  - evaluation_results (List[EvaluationResult]): Per-checkpoint compliance status with scores and reasons
+  - statistics (Dict): Aggregated counts (compliant, non-compliant, key risks, general risks)
+workflow_stage: 3 - Risk Evaluation
+status: implemented

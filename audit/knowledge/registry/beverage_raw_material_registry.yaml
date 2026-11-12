@@ -1,0 +1,511 @@
+- id: CP-BEV-RM-001
+  title: 供应商生产许可证审查
+  domain: raw_material_management
+  sub_domain: supplier_management
+  category: 原料管理
+  subcategory: 供应商资质审核
+  risk_level: High
+  laws:
+    - 食品生产许可管理办法
+    - 食品安全法
+  keywords:
+    - supplier
+    - license
+    - SC
+    - permit
+    - qualification
+  evidence_required:
+    - 供应商生产许可证复印件
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-001.md
+
+- id: CP-BEV-RM-002
+  title: 供应商产品检验报告审查
+  domain: raw_material_management
+  sub_domain: supplier_management
+  category: 原料管理
+  subcategory: 供应商资质审核
+  risk_level: High
+  laws:
+    - 食品安全法
+    - GB 14881
+  keywords:
+    - supplier
+    - COA
+    - inspection report
+    - test report
+    - certificate
+  evidence_required:
+    - 供应商检验报告（COA）
+    - 进货台账对应记录
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-002.md
+
+- id: CP-BEV-RM-003
+  title: 供应商准入评价记录检查
+  domain: raw_material_management
+  sub_domain: supplier_management
+  category: 原料管理
+  subcategory: 供应商评价
+  risk_level: Medium
+  laws:
+    - 食品安全法
+    - GB 14881
+  keywords:
+    - supplier
+    - evaluation
+    - qualification
+    - access
+    - onboarding
+  evidence_required:
+    - 供应商准入评价记录
+    - 供应商准入制度
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-003.md
+
+- id: CP-BEV-RM-004
+  title: 供应商年度评价记录检查
+  domain: raw_material_management
+  sub_domain: supplier_management
+  category: 原料管理
+  subcategory: 供应商评价
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - supplier
+    - annual evaluation
+    - performance review
+    - assessment
+  evidence_required:
+    - 供应商年度评价记录
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-004.md
+
+- id: CP-BEV-RM-005
+  title: 合格供应商名录核查
+  domain: raw_material_management
+  sub_domain: supplier_management
+  category: 原料管理
+  subcategory: 合格供应商名录
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品安全法
+  keywords:
+    - supplier
+    - approved list
+    - directory
+    - approved supplier
+  evidence_required:
+    - 合格供应商名录
+    - 进货台账
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-005.md
+
+- id: CP-BEV-RM-006
+  title: 进货查验记录完整性检查
+  domain: raw_material_management
+  sub_domain: receiving_inspection
+  category: 原料管理
+  subcategory: 进货查验记录
+  risk_level: High
+  laws:
+    - 食品安全法
+    - GB 14881
+  keywords:
+    - receiving
+    - inspection
+    - records
+    - traceability
+    - batch
+  evidence_required:
+    - 进货查验记录（10批次）
+    - 进货查验制度
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-006.md
+
+- id: CP-BEV-RM-007
+  title: 原料合格证明文件核对
+  domain: raw_material_management
+  sub_domain: receiving_inspection
+  category: 原料管理
+  subcategory: 进货查验记录
+  risk_level: High
+  laws:
+    - 食品安全法
+    - GB 14881
+  keywords:
+    - COA
+    - certificate
+    - conformity
+    - raw material
+    - verification
+  evidence_required:
+    - 进货台账
+    - 合格证明文件
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-007.md
+
+- id: CP-BEV-RM-008
+  title: 原料感官验收执行检查
+  domain: raw_material_management
+  sub_domain: receiving_inspection
+  category: 原料管理
+  subcategory: 感官验收
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - sensory
+    - appearance
+    - color
+    - odor
+    - texture
+    - inspection
+  evidence_required:
+    - 进货查验记录（感官验收栏）
+    - 原料验收标准文件
+    - 现场观察记录
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-008.md
+
+- id: CP-BEV-RM-009
+  title: 原料包装完整性检查
+  domain: raw_material_management
+  sub_domain: receiving_inspection
+  category: 原料管理
+  subcategory: 感官验收
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - packaging
+    - integrity
+    - damage
+    - leak
+    - contamination
+  evidence_required:
+    - 包装状态现场照片
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-009.md
+
+- id: CP-BEV-RM-010
+  title: 原料保质期与生产日期核对
+  domain: raw_material_management
+  sub_domain: receiving_inspection
+  category: 原料管理
+  subcategory: 感官验收
+  risk_level: High
+  laws:
+    - 食品安全法
+    - GB 14881
+  keywords:
+    - shelf life
+    - production date
+    - expiry
+    - date verification
+    - remaining shelf life
+  evidence_required:
+    - 进货台账（生产日期/保质期栏）
+    - 库存原料包装生产日期照片
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-010.md
+
+- id: CP-BEV-RM-011
+  title: 不合格原料隔离与标识检查
+  domain: raw_material_management
+  sub_domain: receiving_inspection
+  category: 原料管理
+  subcategory: 不合格原料处理
+  risk_level: High
+  laws:
+    - GB 14881
+  keywords:
+    - non-conforming
+    - segregation
+    - labeling
+    - quarantine
+    - rejection
+  evidence_required:
+    - 不合格品区现场照片
+    - 不合格原料台账
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-011.md
+
+- id: CP-BEV-RM-012
+  title: 原料退货/让步接收记录检查
+  domain: raw_material_management
+  sub_domain: receiving_inspection
+  category: 原料管理
+  subcategory: 不合格原料处理
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - return
+    - concession
+    - non-conforming
+    - disposition
+    - rejection
+  evidence_required:
+    - 让步接收审批记录
+    - 退货记录
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-012.md
+
+- id: CP-BEV-RM-013
+  title: 原料仓库温湿度控制检查
+  domain: raw_material_management
+  sub_domain: storage
+  category: 原料管理
+  subcategory: 仓库条件
+  risk_level: High
+  laws:
+    - GB 14881
+  keywords:
+    - temperature
+    - humidity
+    - monitoring
+    - warehouse
+    - environment
+  evidence_required:
+    - 当前温湿度计读数照片
+    - 最近1个月温湿度记录
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-013.md
+
+- id: CP-BEV-RM-014
+  title: 原料仓库防虫防鼠设施检查
+  domain: raw_material_management
+  sub_domain: storage
+  category: 原料管理
+  subcategory: 仓库条件
+  risk_level: High
+  laws:
+    - GB 14881
+  keywords:
+    - pest
+    - rodent
+    - insect
+    - prevention
+    - warehouse
+    - barrier
+  evidence_required:
+    - 挡鼠板照片
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-014.md
+
+- id: CP-BEV-RM-015
+  title: 原料先进先出执行检查
+  domain: raw_material_management
+  sub_domain: storage
+  category: 原料管理
+  subcategory: 库存管理
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - FIFO
+    - first-in-first-out
+    - inventory
+    - rotation
+    - stock
+  evidence_required:
+    - 原料堆放现场照片
+    - 领料记录
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-015.md
+
+- id: CP-BEV-RM-016
+  title: 原料库存标识检查
+  domain: raw_material_management
+  sub_domain: storage
+  category: 原料管理
+  subcategory: 库存管理
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - labeling
+    - identification
+    - batch
+    - inventory
+    - status
+  evidence_required:
+    - 库存标识照片（3-5张）
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-016.md
+
+- id: CP-BEV-RM-017
+  title: 原料离墙离地存放检查
+  domain: raw_material_management
+  sub_domain: storage
+  category: 原料管理
+  subcategory: 库存管理
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - storage
+    - pallet
+    - off-floor
+    - off-wall
+    - spacing
+    - stacking
+  evidence_required:
+    - 原料离墙离地存放照片
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-017.md
+
+- id: CP-BEV-RM-018
+  title: 冷藏原料温度监控检查
+  domain: raw_material_management
+  sub_domain: storage
+  category: 原料管理
+  subcategory: 特殊原料管理
+  risk_level: High
+  laws:
+    - GB 14881
+  keywords:
+    - cold chain
+    - refrigeration
+    - temperature
+    - monitoring
+    - dairy
+    - cold storage
+  evidence_required:
+    - 冷库当前温度照片
+    - 温度连续监控记录（1个月）
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-018.md
+
+- id: CP-BEV-RM-019
+  title: 食品添加剂专库/专柜检查
+  domain: raw_material_management
+  sub_domain: storage
+  category: 原料管理
+  subcategory: 特殊原料管理
+  risk_level: High
+  laws:
+    - GB 14881
+    - 食品添加剂管理规定
+  keywords:
+    - food additive
+    - dedicated storage
+    - locked
+    - segregation
+    - controlled access
+  evidence_required:
+    - 添加剂专库/专柜照片
+    - 添加剂标识照片
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-019.md
+
+- id: CP-BEV-RM-020
+  title: PET瓶坯验收检查
+  domain: raw_material_management
+  sub_domain: packaging_materials
+  category: 原料管理
+  subcategory: 包材验收
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - PET
+    - preform
+    - bottle
+    - packaging
+    - receiving
+    - appearance
+  evidence_required:
+    - 瓶坯验收标准
+    - 瓶坯验收记录
+    - 瓶坯外观照片
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-020.md
+
+- id: CP-BEV-RM-021
+  title: 瓶盖密封性检验检查
+  domain: raw_material_management
+  sub_domain: packaging_materials
+  category: 原料管理
+  subcategory: 包材验收
+  risk_level: High
+  laws:
+    - GB 14881
+  keywords:
+    - cap
+    - seal
+    - closure
+    - integrity
+    - packaging
+    - torque
+  evidence_required:
+    - 瓶盖验收标准
+    - 瓶盖验收记录（含密封性测试结果）
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-021.md
+
+- id: CP-BEV-RM-022
+  title: 内包材贮存环境检查
+  domain: raw_material_management
+  sub_domain: packaging_materials
+  category: 原料管理
+  subcategory: 包材贮存
+  risk_level: Medium
+  laws:
+    - GB 14881
+  keywords:
+    - packaging
+    - storage
+    - cleanliness
+    - dry
+    - pest-free
+    - dust
+  evidence_required:
+    - 包材仓库环境照片
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-022.md
+
+- id: CP-BEV-RM-023
+  title: 食品添加剂使用记录检查
+  domain: raw_material_management
+  sub_domain: food_additives
+  category: 原料管理
+  subcategory: 添加剂使用记录
+  risk_level: High
+  laws:
+    - 食品添加剂管理规定
+    - 食品安全法
+  keywords:
+    - food additive
+    - usage record
+    - traceability
+    - recipe
+    - dosage
+  evidence_required:
+    - 食品添加剂使用台账
+    - 对应批次的配方文件
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-023.md
+
+- id: CP-BEV-RM-024
+  title: 添加剂称量复核检查
+  domain: raw_material_management
+  sub_domain: food_additives
+  category: 原料管理
+  subcategory: 添加剂称量复核
+  risk_level: High
+  laws:
+    - GB 14881
+  keywords:
+    - additive
+    - weighing
+    - verification
+    - dual-check
+    - calibration
+    - scale
+  evidence_required:
+    - 添加剂称量记录（含签字）
+    - 电子秤校准标签照片
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-024.md
+
+- id: CP-BEV-RM-025
+  title: 添加剂GB2760符合性抽查
+  domain: raw_material_management
+  sub_domain: food_additives
+  category: 原料管理
+  subcategory: GB2760符合性
+  risk_level: High
+  laws:
+    - GB 2760
+    - 食品添加剂管理规定
+  keywords:
+    - GB 2760
+    - food additive
+    - compliance
+    - max usage
+    - permitted
+    - food category
+  evidence_required:
+    - 产品配方（含添加剂清单）
+    - 添加剂使用台账（5批次）
+  checkpoint_file: knowledge/checkpoints/beverage/raw_material/CP-BEV-RM-025.md

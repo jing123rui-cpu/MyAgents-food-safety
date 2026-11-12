@@ -1,0 +1,48 @@
+id: RR-CP-BEV-RM-007
+checkpoint_id: CP-BEV-RM-007
+title: 原料合格证明文件核对
+version: "1.0"
+domain: 原料验收
+category: 进货查验记录
+risk_level: Critical
+purpose: 确认企业已对每批原料收集并核对了合格证明文件（供应商出厂检验报告、第三方型式检验报告等），证明文件与进货批次对应。
+decision_logic:
+  - condition: 所有批次文件齐全且对应
+    result: PASS
+  - condition: 某批次文件日期晚于进货日期
+    result: WARNING
+    severity: Medium
+  - condition: 企业声称供应商通过系统发送电子报告但无法调取
+    result: WARNING
+    severity: Medium
+  - condition: 不同供应商的证明文件格式、纸张完全一致
+    result: WARNING
+    severity: High
+required_evidence:
+  - 进货台账
+  - 合格证明文件
+pass_condition: 全部批次文件齐全且对应
+fail_condition: 超过2批次无对应合格证明
+warning_condition: 有证明但批次不匹配或日期倒挂
+legal_basis:
+  - REG-FOOD-SAFETY-LAW
+  - REG-GB-14881
+risk_description: 超过2批次无对应合格证明
+typical_nonconformities:
+  - 多批次无合格证明文件
+  - 证明文件与批次不匹配
+  - 证明文件日期晚于进货日期
+  - 证明文件检测项目不全
+  - 证明文件为复印件且模糊
+recommended_actions:
+  - 查证: 多批次无合格证明文件 — 追溯该批次原料使用状态
+  - 查证: 证明文件与批次不匹配 — 要求企业核实
+  - 查证: 证明文件日期晚于进货日期 — 确认是否先收货后索证
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-FOOD-SAFETY-LAW
+    - REG-GB-14881
+  recommendation: ""

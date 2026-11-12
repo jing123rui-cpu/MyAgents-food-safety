@@ -1,0 +1,45 @@
+id: RR-CP-BEV-RM-015
+checkpoint_id: CP-BEV-RM-015
+title: 原料先进先出执行检查
+version: "1.0"
+domain: 原料贮存
+category: 库存管理
+risk_level: High
+purpose: 确认企业建立了原料先进先出（FIFO）管理制度，并在实际库存管理中有效执行，防止原料因长期存放导致过期变质。
+decision_logic:
+  - condition: 堆放顺序合理且领料记录验证一致
+    result: PASS
+  - condition: 堆放顺序不合理但未造成过期
+    result: WARNING
+    severity: Low
+  - condition: 企业使用电子WMS系统自动管控FIFO
+    result: PASS
+  - condition: 不同批次混放无法区分
+    result: FAIL
+    severity: High
+required_evidence:
+  - 原料堆放现场照片
+  - 领料记录
+pass_condition: 制度完善、现场堆放合理、记录可验证
+fail_condition: 较早批次过期仍未被领用（FIFO完全失效）
+warning_condition: 批次存放顺序不合理但未导致过期
+legal_basis:
+  - REG-GB-14881
+risk_description: 较早批次过期仍未被领用（FIFO完全失效）
+typical_nonconformities:
+  - 无FIFO管理制度
+  - 较早批次被压在较晚批次下方
+  - 领料记录显示批次跳跃
+  - 仓管人员不了解FIFO要求
+  - 较早批次已过期仍在库中
+recommended_actions:
+  - 查证: 较早批次已过期仍在库中 — 追溯库存管理漏洞
+  - 查证: 仓管人员不了解FIFO要求 — 安排培训
+  - 查证: 较早批次被压在较晚批次下方 — 调整堆放方式
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

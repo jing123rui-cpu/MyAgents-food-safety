@@ -1,0 +1,44 @@
+id: RR-CP-BEV-RM-009
+checkpoint_id: CP-BEV-RM-009
+title: 原料包装完整性检查
+version: "1.0"
+domain: 原料验收
+category: 感官验收
+risk_level: High
+purpose: 确认原料到达时外包装完好无损，无泄漏、破损、严重变形或污染迹象，保障原料在运输和贮存过程中未被污染。
+decision_logic:
+  - condition: 包装完好、无异常
+    result: PASS
+  - condition: 发现破损但该批尚未使用
+    result: WARNING
+    severity: Low
+  - condition: 发现包装明显异常但企业已签收入库
+    result: FAIL
+    severity: High
+  - condition: 包装有少量灰尘属正常运输痕迹
+    result: PASS
+required_evidence:
+  - 包装状态现场照片
+pass_condition: 包装完好但制度无包装检查要求
+fail_condition: 发现破损泄漏或胀袋
+warning_condition: 包装污染或虫蛀痕迹但不严重
+legal_basis:
+  - REG-GB-14881
+risk_description: 发现破损泄漏或胀袋
+typical_nonconformities:
+  - 发现包装破损泄漏
+  - 发现包装胀袋
+  - 包装有明显污渍
+  - 验收记录无包装检查栏
+  - 包装完好但有虫蛀痕迹
+recommended_actions:
+  - 查证: 发现包装破损泄漏 — 评估原料是否被污染
+  - 查证: 发现包装胀袋 — 评估微生物繁殖风险
+  - 查证: 包装完好但有虫蛀痕迹 — 检查虫害控制措施
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-015
+checkpoint_id: CP-BEV-PP-015
+title: 停产恢复
+version: "1.0"
+domain: 生产过程控制
+category: 过程偏差处理
+risk_level: High
+purpose: 确认停产（计划内或计划外）后恢复生产前，设备设施经全面检查和确认，环境条件和设备状态满足生产要求。
+decision_logic:
+  - condition: 停产恢复有管理程序，恢复前检查清单逐项完成，设备环境合格，首件确认通过
+    result: PASS
+  - condition: 恢复检查记录完整但部分非关键项恢复时间稍晚于计划
+    result: PASS
+  - condition: 无停产恢复管理程序
+    result: FAIL
+  - condition: 停产恢复前未执行任何检查即恢复生产
+    result: FAIL
+  - condition: 恢复检查发现设备异常但未修复即开始生产
+    result: FAIL
+required_evidence:
+  - 停产恢复管理程序
+  - 停产恢复记录（3次）
+pass_condition: 停产恢复有管理程序、恢复前检查完整、确认签字齐全、环境设备状态合格
+fail_condition: 停产恢复前未执行检查即恢复生产
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 停产恢复未经检查确认即生产可能导致设备故障或环境污染影响产品质量
+typical_nonconformities:
+  - 无停产恢复管理程序
+  - 恢复前检查记录缺失
+  - 恢复检查发现设备异常但未修复即生产
+  - 恢复后未做首件确认
+  - 恢复检查记录缺少环境检测结果
+recommended_actions:
+  - 查证: 停产恢复前未执行检查即生产 — 立即停产检查
+  - 查证: 恢复检查发现设备异常但未修复 — 追溯该批次产品
+  - 查证: 无停产恢复管理程序 — 要求制定
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

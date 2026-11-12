@@ -1,0 +1,45 @@
+id: RR-CP-BEV-RM-014
+checkpoint_id: CP-BEV-RM-014
+title: 原料仓库防虫防鼠设施检查
+version: "1.0"
+domain: 原料贮存
+category: 仓库条件
+risk_level: Critical
+purpose: 确认原料仓库的防虫防鼠设施配置到位且运行正常，有效防止虫鼠进入仓库污染原料。
+decision_logic:
+  - condition: 挡鼠板、纱窗、封堵全部到位，无虫鼠迹象
+    result: PASS
+  - condition: 发现少量鼠粪
+    result: FAIL
+    severity: Critical
+  - condition: 有挡鼠板但高度不足60cm
+    result: WARNING
+    severity: Low
+  - condition: 企业声称使用了电子驱鼠器
+    result: WARNING
+    severity: Medium
+required_evidence:
+  - 挡鼠板照片
+pass_condition: 设施完善、无虫鼠迹象
+fail_condition: 发现鼠患迹象
+warning_condition: 防鼠设施缺失或虫害迹象
+legal_basis:
+  - REG-GB-14881
+risk_description: 发现鼠患迹象
+typical_nonconformities:
+  - 无挡鼠板或挡鼠板高度不够
+  - 仓库内发现鼠粪/鼠咬痕
+  - 发现虫迹或虫尸
+  - 墙面/管道孔洞未封堵
+  - 纱窗破损
+recommended_actions:
+  - 查证: 仓库内发现鼠粪/鼠咬痕 — 立即启动虫害控制措施
+  - 查证: 无挡鼠板或挡鼠板高度不够 — 加装或加高
+  - 查证: 墙面/管道孔洞未封堵 — 封堵处理
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-GB-14881
+  recommendation: ""

@@ -1,0 +1,48 @@
+id: RR-CP-BEV-RM-005
+checkpoint_id: CP-BEV-RM-005
+title: 合格供应商名录核查
+version: "1.0"
+domain: 供应商管理
+category: 合格供应商名录
+risk_level: Critical
+purpose: 确认企业持有经审批的合格供应商名录，且实际采购原料的供应商均在名录范围内，不存在从合格名录外供应商采购的情况。
+decision_logic:
+  - condition: 名录完整、审批齐全、交叉比对无异常
+    result: PASS
+  - condition: 发现1批次原料来自名录外供应商
+    result: WARNING
+    severity: Medium
+  - condition: 名录中缺少某关键原料供应商
+    result: WARNING
+    severity: Medium
+  - condition: 名录版本日期距今超过1年且无复核标记
+    result: WARNING
+    severity: Low
+required_evidence:
+  - 合格供应商名录
+  - 进货台账
+pass_condition: 名录完整且有定期复核机制
+fail_condition: 无合格名录或发现从非合格供应商采购
+warning_condition: 名录存在但覆盖不全或未及时更新
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 无合格名录或发现从非合格供应商采购
+typical_nonconformities:
+  - 无合格供应商名录
+  - 名录未经审批
+  - 实际采购供应商不在名录中
+  - 名录内容过期
+  - 名录缺少年度确认标记
+recommended_actions:
+  - 查证: 无合格供应商名录 — 要求企业立即建立
+  - 查证: 实际采购供应商不在名录中 — 追溯该批次原料
+  - 查证: 名录未经审批 — 要求完成审批流程
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

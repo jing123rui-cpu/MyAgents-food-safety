@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-012
+checkpoint_id: CP-BEV-PP-012
+title: 关键工序记录
+version: "1.0"
+domain: 生产过程控制
+category: 过程记录
+risk_level: High
+purpose: 确认关键工序（CCP点、关键控制步骤）的操作记录完整、准确，满足法规和HACCP计划要求。
+decision_logic:
+  - condition: 关键工序清单完整，CCP监控值均在关键限值内，操作记录规范且有复核
+    result: PASS
+  - condition: 关键工序记录完整但个别次要监控值记录稍有延迟
+    result: PASS
+  - condition: 无关键工序清单或控制计划
+    result: FAIL
+  - condition: CCP监控值超过关键限值且无任何处置记录
+    result: FAIL
+  - condition: 关键工序操作记录关键监控值空白
+    result: FAIL
+required_evidence:
+  - 关键工序清单/控制计划
+  - 关键工序操作记录（5批次）
+pass_condition: 关键工序有明确清单、操作记录完整、CCP监控值均在关键限值内
+fail_condition: 关键工序未记录或CCP监控值超过关键限值无处置
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 关键工序（CCP）记录缺失或显示超限无处置构成严重合规缺陷
+typical_nonconformities:
+  - 无关键工序清单或控制计划
+  - 关键工序操作记录中CCP监控值空白
+  - CCP监控值超过关键限值但无处置记录
+  - 关键工序操作记录与实际操作不一致
+  - 关键工序记录缺少复核签名
+recommended_actions:
+  - 查证: 关键工序操作记录中CCP监控值空白 — 评估是否为系统性缺失
+  - 查证: CCP监控值超过关键限值但无处置记录 — 启动产品追溯
+  - 查证: 关键工序操作记录与实际操作不一致 — 调查真实性
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

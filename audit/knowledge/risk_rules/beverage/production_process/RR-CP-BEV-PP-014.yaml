@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-014
+checkpoint_id: CP-BEV-PP-014
+title: 清场
+version: "1.0"
+domain: 生产过程控制
+category: 过程偏差处理
+risk_level: Medium
+purpose: 确认生产结束后和换产前的清场操作按SOP执行，清场结果经检查确认，防止残留物料造成交叉污染。
+decision_logic:
+  - condition: 每次清场按SOP执行，有完整记录和检查确认签名，无残留物料
+    result: PASS
+  - condition: 清场记录完整但确认签名不是第二人
+    result: PASS
+  - condition: 未执行清场即开始生产
+    result: FAIL
+  - condition: 清场记录显示有残留物料且未处理
+    result: FAIL
+  - condition: 清场记录缺失超过50%
+    result: FAIL
+required_evidence:
+  - 清场记录（5份）
+  - 清场SOP或检查表
+pass_condition: 清场按SOP执行、有记录、有检查确认、无残留
+fail_condition: 未执行清场或清场记录显示有残留物料
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 清场不彻底可能导致残留物料进入下一产品造成交叉污染
+typical_nonconformities:
+  - 清场记录缺失
+  - 清场发现有残留物料
+  - 清场后未经第二人确认
+  - 清场SOP内容不完整
+  - 换产前未执行清场
+recommended_actions:
+  - 查证: 清场发现有残留物料 — 立即清场并追溯是否已污染换产产品
+  - 查证: 换产前未执行清场 — 评估交叉污染风险
+  - 查证: 清场后未经确认 — 完善清场确认流程
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: Medium
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

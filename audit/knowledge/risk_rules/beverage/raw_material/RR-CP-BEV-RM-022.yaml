@@ -1,0 +1,44 @@
+id: RR-CP-BEV-RM-022
+checkpoint_id: CP-BEV-RM-022
+title: 内包材贮存环境检查
+version: "1.0"
+domain: 包装材料管理
+category: 包材贮存
+risk_level: High
+purpose: 确认内包装材料（瓶、盖、膜、标签等）的贮存环境满足清洁、干燥、防尘、防虫的要求，避免包材在使用前受到污染。
+decision_logic:
+  - condition: 包材仓库清洁、干燥、有防尘
+    result: PASS
+  - condition: 包材仓库与原料仓库共用
+    result: WARNING
+    severity: Low
+  - condition: 包材拆包后剩余部分无防护
+    result: WARNING
+    severity: Low
+  - condition: 标签与瓶盖在同一区域但分区合理
+    result: PASS
+required_evidence:
+  - 包材仓库环境照片
+pass_condition: 环境清洁干燥有防尘措施
+fail_condition: 与化学品混放
+warning_condition: 暴露粉尘或受潮或有虫鼠迹象
+legal_basis:
+  - REG-GB-14881
+risk_description: 与化学品混放
+typical_nonconformities:
+  - 包材直接暴露在粉尘环境中
+  - 包材仓库有漏水痕迹
+  - 包材与化学品混放
+  - 包材无防尘覆盖
+  - 包材仓库有虫鼠迹象
+recommended_actions:
+  - 查证: 包材与化学品混放 — 立即分开存放
+  - 查证: 包材直接暴露在粉尘环境中 — 加防尘措施
+  - 查证: 包材仓库有漏水痕迹 — 修复漏水点
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

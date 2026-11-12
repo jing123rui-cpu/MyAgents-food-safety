@@ -1,0 +1,54 @@
+id: RR-CP-BEV-RM-025
+checkpoint_id: CP-BEV-RM-025
+title: 添加剂GB2760符合性抽查
+version: "1.0"
+domain: 食品添加剂管理
+category: GB2760符合性
+risk_level: Critical
+purpose: 确认企业使用的每种食品添加剂均在GB 2760允许使用的范围内，使用量不超过最大使用量/最大残留量，使用范围符合分类规定。
+decision_logic:
+  - condition: 配方中所有添加剂在GB 2760允许范围且用量合规
+    result: PASS
+  - condition: 发现一种添加剂不在GB 2760的饮料类别中
+    result: FAIL
+    severity: Critical
+  - condition: 配方中添加剂用量接近但未超过GB 2760限值
+    result: WARNING
+    severity: Low
+  - condition: 企业使用的香精香料
+    result: WARNING
+    severity: Low
+  - condition: 企业使用的添加剂品种在GB 2760中限制仅用于某类饮料
+    result: WARNING
+    severity: Medium
+  - condition: 配方更新日期在GB 2760新版实施之前
+    result: WARNING
+    severity: Medium
+required_evidence:
+  - 产品配方（含添加剂清单）
+  - 添加剂使用台账（5批次）
+pass_condition: 全部品种合规
+fail_condition: 超范围或超限量使用
+warning_condition: 使用已撤销品种或不知晓最新修订
+legal_basis:
+  - REG-GB-2760
+  - REG-FOOD-ADDITIVE
+risk_description: 超范围或超限量使用
+typical_nonconformities:
+  - 使用了GB 2760不允许在该类产品中使用的添加剂
+  - 添加剂使用量超出GB 2760限值
+  - 使用了GB 2760已公告撤销的添加剂
+  - 配方中添加剂品种在台账中未出现
+  - 企业不知晓GB 2760的最新修订情况
+recommended_actions:
+  - 查证: 使用了GB 2760不允许在该类产品中使用的添加剂 — 立即停止使用
+  - 查证: 添加剂使用量超出GB 2760限值 — 调整配方用量
+  - 查证: 企业不知晓GB 2760的最新修订情况 — 安排法规培训
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-GB-2760
+    - REG-FOOD-ADDITIVE
+  recommendation: ""

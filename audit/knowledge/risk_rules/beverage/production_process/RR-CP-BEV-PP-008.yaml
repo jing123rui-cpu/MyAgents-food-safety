@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-008
+checkpoint_id: CP-BEV-PP-008
+title: 换产管理
+version: "1.0"
+domain: 生产过程控制
+category: 工艺参数监控
+risk_level: Medium
+purpose: 确认产品换产时清场、清洗、首件确认等操作按规定执行，防止交叉污染和产品混淆。
+decision_logic:
+  - condition: 换产按作业指导书执行，清场验证合格且有记录，首件确认合格
+    result: PASS
+  - condition: 换产操作完整但清场验证记录缺少复核签名
+    result: PASS
+  - condition: 换产未执行清场即开始下一产品生产
+    result: FAIL
+  - condition: 无首件确认记录即开始批量生产
+    result: FAIL
+  - condition: 换产记录缺失关键步骤（如过敏原清洁）
+    result: FAIL
+required_evidence:
+  - 换产作业指导书
+  - 换产记录（3次）
+pass_condition: 换产按指导书执行、清场验证合格、首件确认记录完整
+fail_condition: 换产未执行清场或首件确认即开始生产
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 换产未执行清场或首件确认可能导致交叉污染或批量不合格
+typical_nonconformities:
+  - 换产无作业指导书
+  - 换产未执行清场
+  - 无首件确认记录
+  - 换产记录缺失关键步骤
+  - 过敏原产品换产后未执行过敏原清洁验证
+recommended_actions:
+  - 查证: 换产未执行清场 — 评估交叉污染风险
+  - 查证: 无首件确认记录 — 对换产后首件产品进行追溯检测
+  - 查证: 过敏原产品换产未做过敏原清洁验证 — 升级为食品安全风险
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: Medium
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

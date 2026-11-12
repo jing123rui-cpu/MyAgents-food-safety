@@ -1,0 +1,51 @@
+id: RR-CP-BEV-RM-023
+checkpoint_id: CP-BEV-RM-023
+title: 食品添加剂使用记录检查
+version: "1.0"
+domain: 食品添加剂管理
+category: 添加剂使用记录
+risk_level: Critical
+purpose: 确认企业建立了完整的食品添加剂使用记录，记录内容涵盖添加剂的名称、生产单位、采购日期、批号、使用量、使用产品、使用人信息，确保使用可追溯。
+decision_logic:
+  - condition: 记录完整、使用量与配方一致、采购量与使用量匹配
+    result: PASS
+  - condition: 使用记录显示连续多日使用量完全相同
+    result: WARNING
+    severity: Medium
+  - condition: 采购记录中出现的添加剂品种在使用记录中未出现
+    result: WARNING
+    severity: Medium
+  - condition: 使用量略超配方值但在GB 2760允许范围内
+    result: WARNING
+    severity: Low
+  - condition: 某添加剂品种采购量远大于使用量
+    result: WARNING
+    severity: Medium
+required_evidence:
+  - 食品添加剂使用台账
+  - 对应批次的配方文件
+pass_condition: 记录完整准确可追溯
+fail_condition: 无记录或使用量与配方严重不符
+warning_condition: 记录不完整或采购量使用量不匹配
+legal_basis:
+  - REG-FOOD-ADDITIVE
+  - REG-FOOD-SAFETY-LAW
+risk_description: 无记录或使用量与配方严重不符
+typical_nonconformities:
+  - 无添加剂使用记录
+  - 记录不完整（缺少品种/数量/产品）
+  - 使用量与配方不符
+  - 采购量与使用量不匹配
+  - 记录签字不全
+recommended_actions:
+  - 查证: 无添加剂使用记录 — 立即建立使用台账
+  - 查证: 使用量与配方不符 — 确认是否存在超量使用
+  - 查证: 采购量与使用量不匹配 — 追溯差额去向
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-FOOD-ADDITIVE
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

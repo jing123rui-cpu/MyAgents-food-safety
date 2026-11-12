@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>企业基本信息</h2>
+    <form action="/ui/problems" method="get">
+        <div class="form-group">
+            <label for="name">企业名称</label>
+            <input type="text" id="name" name="name" placeholder="请输入企业名称" required>
+        </div>
+        <div class="form-group">
+            <label>企业类型</label>
+            <div class="radio-group">
+                <label><input type="radio" name="type" value="beverage" checked> 饮料生产企业</label>
+                <label><input type="radio" name="type" value="packaged_water"> 包装饮用水企业</label>
+                <label><input type="radio" name="type" value="general_food"> 其他食品生产企业</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="auditor">检查人员</label>
+            <input type="text" id="auditor" name="auditor" placeholder="请输入检查人员姓名">
+        </div>
+        <div class="form-group">
+            <label for="date">检查日期</label>
+            <input type="date" id="date" name="date" value="{{ today }}">
+        </div>
+        <div class="text-center mt-20">
+            <button type="submit" class="btn btn-primary">下一步</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

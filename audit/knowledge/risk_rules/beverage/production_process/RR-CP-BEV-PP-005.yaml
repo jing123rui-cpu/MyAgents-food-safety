@@ -1,0 +1,47 @@
+id: RR-CP-BEV-PP-005
+checkpoint_id: CP-BEV-PP-005
+title: 半成品控制
+version: "1.0"
+domain: 生产过程控制
+category: 工艺参数监控
+risk_level: High
+purpose: 确认半成品在规定条件下存放、存放时限受控，防止半成品因存放不当导致微生物滋生或质量劣变。
+decision_logic:
+  - condition: 半成品存放时间在标准范围内，存放条件符合要求，记录完整可追溯
+    result: PASS
+  - condition: 半成品存放时间略超但经过评估且结论为可使用
+    result: PASS
+  - condition: 半成品超过存放时限且未经任何评估即投入使用
+    result: FAIL
+  - condition: 无半成品存放时限标准
+    result: FAIL
+  - condition: 半成品存放条件严重不符合（温度/防护）要求
+    result: FAIL
+required_evidence:
+  - 半成品存放时限标准
+  - 生产记录（显示存放时间）
+pass_condition: 半成品存放时间在标准范围内，存放条件符合要求，记录完整
+fail_condition: 半成品超过存放时限且未经过评估即投入使用
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 半成品超时存放且未经评估即投入使用存在微生物安全风险
+typical_nonconformities:
+  - 无半成品存放时限标准
+  - 半成品存放时间超过规定期限
+  - 超时半成品未经过评估即使用
+  - 半成品存放条件不符合要求
+  - 半成品容器未加盖或防护
+recommended_actions:
+  - 查证: 半成品超过存放时限且已使用 — 风险评估并追溯
+  - 查证: 无半成品存放时限标准 — 要求企业制定
+  - 查证: 半成品存放条件不符合要求 — 立即整改
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

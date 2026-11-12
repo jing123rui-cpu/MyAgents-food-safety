@@ -1,0 +1,50 @@
+id: RR-CP-BEV-PP-007
+checkpoint_id: CP-BEV-PP-007
+title: 时间温度控制
+version: "1.0"
+domain: 生产过程控制
+category: 工艺参数监控
+risk_level: High
+purpose: 确认热处理/杀菌工序的时间温度参数符合工艺标准，温度记录仪校准有效，CCP关键限值未被突破。
+decision_logic:
+  - condition: 所有批次杀菌温度和时间均符合CCP关键限值，温度记录仪在校准有效期内
+    result: PASS
+  - condition: 温度记录完整但存在轻微波动、均在关键限值以上且有分析记录
+    result: PASS
+  - condition: 杀菌温度低于关键限值
+    result: FAIL
+  - condition: 杀菌时间低于规定值
+    result: FAIL
+  - condition: 温度记录仪超过校准有效期或校准不合格仍在使用
+    result: FAIL
+  - condition: 温度记录关键时段缺失且无合理解释
+    result: FAIL
+required_evidence:
+  - 温度时间记录（5批次）
+  - 温度记录仪校准证书
+  - 工艺标准文件
+pass_condition: 所有批次时间温度参数符合CCP关键限值，记录仪在校准有效期内
+fail_condition: 杀菌温度或时间低于关键限值且未对产品进行隔离评估
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 杀菌温度/时间低于关键限值可能导致致病菌残留，属于严重食品安全事件
+typical_nonconformities:
+  - 杀菌温度低于关键限值
+  - 杀菌时间不足
+  - 温度记录仪未校准
+  - 温度记录缺失关键时段
+  - 温度异常后无产品处置记录
+recommended_actions:
+  - 查证: 杀菌温度低于关键限值 — 立即隔离相关批次产品，启动召回评估
+  - 查证: 温度记录仪未校准 — 追溯未校准期间的产品
+  - 查证: 温度异常后无产品处置记录 — 升级为严重不符合
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

@@ -1,0 +1,12 @@
+name: Image Recognition
+version: 0.1.0
+description: Recognises and classifies food safety-related content from on-site photographs and scanned documents.
+category: Future
+engine: (none)
+inputs:
+  - image (bytes): Photograph or scanned document file
+outputs:
+  - recognised_text (str): OCR-extracted text
+  - classified_labels (List[str]): Detected object or condition labels
+workflow_stage: Future
+status: planning

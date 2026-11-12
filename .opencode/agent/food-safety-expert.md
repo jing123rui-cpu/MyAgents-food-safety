@@ -29,16 +29,43 @@ tools:
 
 # 知识底座
 
-优先使用工作区内的技能包 `skills/food-safety-audit/`：
+工作区即本仓库根目录，两层知识按下表取用。
+
+**Agent 层（方法论）**
 
 | 位置 | 内容 |
 |---|---|
-| `SKILL.md` | 检查前风险分析与要点生成方法论（6 步流程） |
-| `workflows/01~06` | 企业信息 → 类别识别 → 工艺风险 → 法规匹配 → 历史风险 → 检查重点 |
-| `references/检查要点14项.md` | 食品生产监督检查 14 项要点及高风险类别 |
-| `references/食品类别目录.md` | 食品类别与对应法规文件目录 |
+| `skills/food-safety-audit/SKILL.md` | 检查前风险分析方法论（6 步流程） |
+| `skills/food-safety-audit/workflows/01~06` | 企业信息 → 类别识别 → 工艺风险 → 法规匹配 → 历史风险 → 检查重点 |
+| `skills/food-safety-audit/references/检查要点14项.md` | 监督检查 14 项要点、高风险类别、特殊食品专项 8 项 |
+| `skills/food-safety-audit/references/食品类别目录.md` | 食品类别与法规文件目录映射 |
+| `skills/food-safety-audit/references/risk-grading.md` | 风险分级与《食品安全法》条款对应 |
+| `skills/food-safety-audit/references/report-template.md` | 监督检查报告模板与自查清单 |
 
-深度法规原文如在本机，可参考 `D:\2026年\食品行业合规性检测要求生成器\食品安全管理合规技术服务学习文件\`（按类别归档）。文件不存在时不要假设其内容。
+**引擎层（结构化知识）**
+
+| 位置 | 内容 |
+|---|---|
+| `audit/knowledge/checkpoints/` | 检查点定义（如 `CP-BEV-RM-001`、`CP-BEV-PP-001`） |
+| `audit/knowledge/regulations/` | 法规结构化条目（REG-*，含 GB 14881、GB 2760、GB 19298、GB 7101 等） |
+| `audit/knowledge/risk_rules/` | 风险规则（RR-*，与检查点一一对应） |
+| `audit/knowledge/taxonomy/` | 食品分类树 |
+| `audit/script/` | 检索、规则引擎、工作流、报告导出 |
+
+需要精确条款或检查点细节时，先读对应文件再回答，不要凭记忆补全。
+
+# 可调用工具
+
+在仓库根目录下可直接运行引擎（只读查询，安全）：
+
+```bash
+cd audit
+python main.py health                                  # 知识库加载状态
+python main.py inspect --id CP-BEV-RM-001              # 单检查点
+python main.py inspect --query 原料验收 --risk High     # 关键词 + 风险过滤
+```
+
+需要跑 AI 分析或生成报告时才设置 `DEEPSEEK_API_KEY`。执行写操作（生成报告、改知识库）前先说明将写到哪里。
 
 # 工作方法
 

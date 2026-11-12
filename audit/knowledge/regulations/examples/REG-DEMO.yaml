@@ -1,0 +1,166 @@
+# =============================================================================
+# REG-DEMO — Regulation Knowledge Model Demonstration
+# Purpose:      Demonstrate the regulation data model relationships
+# Articles:     3 (no real legal content)
+# =============================================================================
+
+id: REG-DEMO
+title: Demonstration Regulation for Knowledge Model
+title_zh: 法规知识模型演示条例
+document_type: national_standard
+issuing_authority: Internal — FoodAuditAgent Project
+effective_date: "2026-07-03"
+status: draft
+scope: This regulation exists solely to demonstrate the knowledge model structure.
+purpose: Demonstrate how Regulation → Chapter → Article → Requirement → Checkpoint → RiskRule relationships work.
+keywords:
+  - demonstration
+  - knowledge model
+  - regulation schema
+last_revision: ""
+
+# ── Chapters ───────────────────────────────────────────────────────────────────
+
+chapters:
+
+  - chapter_id: CH-DEMO-01
+    title: General Provisions
+    title_zh: 总则
+    number: "1"
+    articles:
+
+      - article_id: ART-DEMO-01-01
+        number: "1"
+        title: Purpose
+        title_zh: 目的
+        summary: This regulation establishes the knowledge model framework.
+        keywords:
+          - purpose
+          - scope
+          - demonstration
+        inspection_topics:
+          - knowledge model compliance
+          - data structure verification
+        risk_tags:
+          - demonstration-only
+        related_checkpoint_ids:
+          - CP-BEV-RM-001
+        related_rule_ids:
+          - RR-CP-BEV-RM-001
+        severity: LOW
+        requirements:
+          - requirement_id: REQ-DEMO-01-01-01
+            description: The knowledge model must support regulation→checkpoint traceability.
+            inspection_method: Verify that each article's related_checkpoint_ids resolve to existing checkpoints.
+            required_evidence:
+              - Cross-reference report between regulation and checkpoint registry
+            decision_logic: All related_checkpoint_ids exist in the checkpoint registry
+            common_nonconformities:
+              - Article references checkpoint ID that does not exist
+              - Article has no related_checkpoint_ids
+            recommended_actions:
+              - 查证: Missing checkpoint reference — update article metadata
+            severity: LOW
+
+  - chapter_id: CH-DEMO-02
+    title: Article Structure
+    title_zh: 条款结构
+    number: "2"
+    articles:
+
+      - article_id: ART-DEMO-02-01
+        number: "2.1"
+        title: Article Fields
+        title_zh: 条款字段
+        summary: Each article must have a unique article_id, chapter reference, and severity classification.
+        keywords:
+          - article
+          - fields
+          - mandatory
+        inspection_topics:
+          - data completeness
+          - mandatory field check
+        risk_tags:
+          - documentation
+        related_checkpoint_ids:
+          - CP-BEV-PP-009
+        related_rule_ids:
+          - RR-CP-BEV-PP-009
+        severity: MEDIUM
+        requirements:
+          - requirement_id: REQ-DEMO-02-01-01
+            description: Every article must have a unique article_id.
+            inspection_method: Scan all article IDs for duplicates.
+            required_evidence:
+              - Article ID inventory
+            decision_logic: No duplicate article_id values exist
+            common_nonconformities:
+              - Duplicate article_id values
+              - Missing article_id
+            recommended_actions:
+              - 查证: Duplicate article_id — rename to unique value
+            severity: MEDIUM
+
+          - requirement_id: REQ-DEMO-02-01-02
+            description: Every article must reference an existing chapter.
+            inspection_method: Verify chapter field resolves to a chapter_id in chapters list.
+            required_evidence:
+              - Article-to-chapter mapping report
+            decision_logic: All article.chapter values match existing chapter.chapter_id
+            common_nonconformities:
+              - Article references non-existent chapter
+              - Article has empty chapter field
+            recommended_actions:
+              - 查证: Invalid chapter reference — correct article.chapter field
+            severity: MEDIUM
+
+      - article_id: ART-DEMO-02-02
+        number: "2.2"
+        title: Requirement Decomposition
+        title_zh: 要求分解
+        summary: Articles may be decomposed into one or more inspectable requirements.
+        keywords:
+          - requirement
+          - decomposition
+        inspection_topics:
+          - requirement completeness
+          - decision logic coverage
+        risk_tags:
+          - traceability
+        related_checkpoint_ids:
+          - CP-BEV-PP-001
+          - CP-BEV-PP-007
+        related_rule_ids:
+          - RR-CP-BEV-PP-001
+          - RR-CP-BEV-PP-007
+        severity: HIGH
+        requirements:
+          - requirement_id: REQ-DEMO-02-02-01
+            description: Each requirement must have a deterministic decision_logic.
+            inspection_method: Review decision_logic field for objective, verifiable conditions.
+            required_evidence:
+              - Decision logic audit report
+            decision_logic: decision_logic is non-empty and contains verifiable conditions
+            common_nonconformities:
+              - decision_logic contains subjective terms ("adequate", "reasonable")
+              - decision_logic is empty
+            recommended_actions:
+              - 查证: Subjective decision_logic — rewrite with objective conditions
+            severity: HIGH
+
+# ── Relationship Summary (non-normative) ────────────────────────────────────────
+# This section demonstrates how the model connects to the rest of the system.
+
+# REG-DEMO
+#   └── CH-DEMO-01 (General Provisions)
+#         └── ART-DEMO-01-01 (Purpose)
+#               └── REQ-DEMO-01-01-01 → CP-BEV-RM-001 → RR-CP-BEV-RM-001
+#
+#   └── CH-DEMO-02 (Article Structure)
+#         └── ART-DEMO-02-01 (Article Fields)
+#         │     └── REQ-DEMO-02-01-01 → CP-BEV-PP-009 → RR-CP-BEV-PP-009
+#         │     └── REQ-DEMO-02-01-02 → CP-BEV-PP-009 → RR-CP-BEV-PP-009
+#         │
+#         └── ART-DEMO-02-02 (Requirement Decomposition)
+#               └── REQ-DEMO-02-02-01 → CP-BEV-PP-001, CP-BEV-PP-007
+#                                     → RR-CP-BEV-PP-001, RR-CP-BEV-PP-007

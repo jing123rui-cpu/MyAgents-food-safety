@@ -1,0 +1,46 @@
+id: RR-CP-BEV-RM-011
+checkpoint_id: CP-BEV-RM-011
+title: 不合格原料隔离与标识检查
+version: "1.0"
+domain: 原料验收
+category: 不合格原料处理
+risk_level: Critical
+purpose: 确认企业对验收不合格的原料进行了有效隔离和清晰标识，防止误用。
+decision_logic:
+  - condition: 不合格品专区、标识清晰、台账完整
+    result: PASS
+  - condition: 无不合格品台账但声称近期无不合格
+    result: WARNING
+    severity: Medium
+  - condition: 不合格品与合格品在同一区域但用围栏分隔
+    result: WARNING
+    severity: Low
+  - condition: 不合格品与合格品完全混放
+    result: FAIL
+    severity: Critical
+required_evidence:
+  - 不合格品区现场照片
+  - 不合格原料台账
+pass_condition: 有隔离有台账但标识不清晰
+fail_condition: 不合格品与合格品混放
+warning_condition: 无隔离区或无台账
+legal_basis:
+  - REG-GB-14881
+risk_description: 不合格品与合格品混放
+typical_nonconformities:
+  - 无专门不合格品存放区域
+  - 不合格品与合格品混放
+  - 不合格品有隔离但无标识
+  - 不合格品台账缺失
+  - 不合格品长期未处置
+recommended_actions:
+  - 查证: 不合格品与合格品混放 — 立即纠正，拍照固定证据
+  - 查证: 无专门不合格品存放区域 — 划定专区
+  - 查证: 不合格品台账缺失 — 建立台账记录
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-GB-14881
+  recommendation: ""

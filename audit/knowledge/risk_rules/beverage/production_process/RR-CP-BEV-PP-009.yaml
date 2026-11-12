@@ -1,0 +1,46 @@
+id: RR-CP-BEV-PP-009
+checkpoint_id: CP-BEV-PP-009
+title: 生产记录
+version: "1.0"
+domain: 生产过程控制
+category: 过程记录
+risk_level: High
+purpose: 确认批生产记录完整、准确、可追溯，记录填写符合良好文档规范，能够真实反映生产过程。
+decision_logic:
+  - condition: 批生产记录完整填写、数据准确、时间逻辑一致、任何修改有签名和日期
+    result: PASS
+  - condition: 记录完整但有轻微不规范（如个别非关键项延后填写）
+    result: PASS
+  - condition: 批生产记录关键项空白超过2项
+    result: FAIL
+  - condition: 记录存在涂改且无修改人签名和日期
+    result: FAIL
+  - condition: 记录时间逻辑矛盾或不同批次记录内容雷同
+    result: FAIL
+required_evidence:
+  - 批生产记录（3批次）
+pass_condition: 批生产记录完整、数据准确、填写规范、逻辑一致
+fail_condition: 批生产记录严重缺失或存在逻辑矛盾无法追溯
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 生产记录缺失或不真实导致产品无法追溯，违反食品安全法数据完整性要求
+typical_nonconformities:
+  - 批生产记录关键项空白
+  - 记录存在涂改且无签名或日期
+  - 记录时间逻辑矛盾
+  - 不同批次记录内容雷同
+  - 记录与实际生产脱节
+recommended_actions:
+  - 查证: 批生产记录关键项空白 — 要求企业说明原因
+  - 查证: 记录时间逻辑矛盾 — 调查记录真实性
+  - 查证: 不同批次记录内容雷同 — 判断是否存在复制伪造记录
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

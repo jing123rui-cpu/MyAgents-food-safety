@@ -1,0 +1,13 @@
+name: Regulation Lookup
+version: 1.0.0
+description: Retrieves applicable food safety regulations and legal references for matched checkpoints.
+category: Knowledge Retrieval
+engine: RegulationLoader, knowledge/regulations
+inputs:
+  - matched_checkpoints (List[Checkpoint]): Checkpoints identified by Checkpoint Match
+  - enterprise_type (str): Enterprise category for regulation applicability filtering
+outputs:
+  - regulation_references (List[RegulationReference]): Applicable regulation entries with article references
+  - regulation_table (List[Dict]): Formatted regulation table for report inclusion
+workflow_stage: 2 - Regulation Reference
+status: implemented

@@ -1,0 +1,49 @@
+id: RR-CP-BEV-RM-013
+checkpoint_id: CP-BEV-RM-013
+title: 原料仓库温湿度控制检查
+version: "1.0"
+domain: 原料贮存
+category: 仓库条件
+risk_level: Critical
+purpose: 确认原料仓库的温湿度控制在规定范围内，有温湿度监控设备并定期记录，温湿度异常时有处理机制。
+decision_logic:
+  - condition: 有设备、有记录、数据达标
+    result: PASS
+  - condition: 无温湿度计但仓库条件良好
+    result: FAIL
+    severity: High
+  - condition: 记录连续但有1-2次超限且有处置
+    result: WARNING
+    severity: Low
+  - condition: 记录数据整齐划一（如每天完全相同）
+    result: WARNING
+    severity: Medium
+  - condition: 冷藏库温度记录显示停机期间温度升高
+    result: WARNING
+    severity: Medium
+required_evidence:
+  - 当前温湿度计读数照片
+  - 最近1个月温湿度记录
+pass_condition: 温湿度全程合规
+fail_condition: 无监控设备或长期不达标未处理
+warning_condition: 有设备但记录不连续或超限未及时处置
+legal_basis:
+  - REG-GB-14881
+risk_description: 无监控设备或长期不达标未处理
+typical_nonconformities:
+  - 仓库无温湿度监控设备
+  - 温湿度记录缺失严重
+  - 温湿度超出规定范围
+  - 温湿度记录显示长期不达标但未处理
+  - 温湿度计未校准
+recommended_actions:
+  - 查证: 仓库无温湿度监控设备 — 要求加装
+  - 查证: 温湿度记录显示长期不达标但未处理 — 评估原料影响
+  - 查证: 温湿度计未校准 — 安排校准
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: Critical
+  laws:
+    - REG-GB-14881
+  recommendation: ""

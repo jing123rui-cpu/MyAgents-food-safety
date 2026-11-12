@@ -1,0 +1,47 @@
+id: RR-CP-BEV-RM-008
+checkpoint_id: CP-BEV-RM-008
+title: 原料感官验收执行检查
+version: "1.0"
+domain: 原料验收
+category: 感官验收
+risk_level: High
+purpose: 确认企业验收人员对每批原料进行了感官检查（外观、色泽、气味、组织状态），并按照验收标准判定合格与否。
+decision_logic:
+  - condition: 记录完整且有验收人员描述标准一致
+    result: PASS
+  - condition: 记录有结论但人员说不清标准
+    result: WARNING
+    severity: Low
+  - condition: 现场看到原料直接入库未做检查
+    result: FAIL
+    severity: High
+  - condition: 人员能说出标准但记录中填写笼统
+    result: WARNING
+    severity: Low
+required_evidence:
+  - 进货查验记录（感官验收栏）
+  - 原料验收标准文件
+  - 现场观察记录
+pass_condition: 制度完善、执行到位、记录规范
+fail_condition: 无感官验收制度且实际也未执行
+warning_condition: 记录填写笼统但人员了解标准
+legal_basis:
+  - REG-GB-14881
+risk_description: 无感官验收制度且实际也未执行
+typical_nonconformities:
+  - 记录中无感官检查结论栏
+  - 感官检查栏全部空白
+  - 验收人员不了解标准
+  - 现场观察发现未执行检查直接入库
+  - 感官检查记录填写笼统
+recommended_actions:
+  - 查证: 验收人员不了解标准 — 安排培训
+  - 查证: 现场观察发现未执行检查直接入库 — 加强现场监管
+  - 查证: 记录中无感官检查结论栏 — 修改记录模板
+output_template:
+  status: PASS / WARNING / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+  recommendation: ""

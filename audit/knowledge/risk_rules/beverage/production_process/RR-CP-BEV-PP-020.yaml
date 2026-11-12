@@ -1,0 +1,48 @@
+id: RR-CP-BEV-PP-020
+checkpoint_id: CP-BEV-PP-020
+title: 生产符合性
+version: "1.0"
+domain: 生产过程控制
+category: 过程验证
+risk_level: High
+purpose: 确认实际生产操作与批准工艺文件、操作规程一致，工艺变更受控，现场操作符合文件要求。
+decision_logic:
+  - condition: 现场操作与工艺文件完全一致，工艺变更受控且有记录，操作人员熟悉规程
+    result: PASS
+  - condition: 现场操作与文件基本一致但存在个别非关键操作的文档理解差异
+    result: PASS
+  - condition: 现场操作与工艺文件要求严重不一致
+    result: FAIL
+  - condition: 存在未经批准的工艺变更
+    result: FAIL
+  - condition: 使用的操作规程为过期作废版本
+    result: FAIL
+required_evidence:
+  - 产品工艺文件/操作规程
+  - 工艺变更记录
+  - 现场操作观察记录
+pass_condition: 现场操作与文件一致、工艺变更受控、操作人员知晓规程
+fail_condition: 现场操作与文件要求严重不一致或存在未经批准的工艺变更
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 生产操作与文件不一致或未经批准的工艺变更可能导致产品质量失控
+typical_nonconformities:
+  - 现场操作与工艺文件要求不一致
+  - 存在未经批准的工艺变更
+  - 工艺变更无记录
+  - 操作人员不了解操作规程
+  - 使用的文件版本为过期版本
+recommended_actions:
+  - 查证: 现场操作与工艺文件要求不一致 — 立即纠正并评估影响
+  - 查证: 存在未经批准的工艺变更 — 启动变更控制程序
+  - 查证: 使用的文件版本为过期版本 — 检查文件管理体系
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: High
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""

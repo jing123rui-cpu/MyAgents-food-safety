@@ -1,0 +1,46 @@
+id: RR-CP-BEV-PP-010
+checkpoint_id: CP-BEV-PP-010
+title: 产品标识
+version: "1.0"
+domain: 生产过程控制
+category: 过程记录
+risk_level: Medium
+purpose: 确认生产过程中的产品/物料标识状态清晰（待检、合格、不合格、待处理），防止物料混淆。
+decision_logic:
+  - condition: 所有在制品和物料均有完整状态标识（品名、批次、状态、日期）
+    result: PASS
+  - condition: 标识存在但不完整（如缺少批次号）
+    result: PASS
+  - condition: 在制品或物料无任何标识
+    result: FAIL
+  - condition: 不合格品与合格品混放且无区分标识
+    result: FAIL
+  - condition: 发现标识信息与实物不符
+    result: FAIL
+required_evidence:
+  - 现场标识照片
+pass_condition: 所有在制品、物料均有明确状态标识，标识信息完整
+fail_condition: 在制品或物料无任何标识导致无法识别状态
+warning_condition: ""
+legal_basis:
+  - REG-GB-14881
+  - REG-FOOD-SAFETY-LAW
+risk_description: 产品标识缺失可能导致不合格物料被误用或混淆
+typical_nonconformities:
+  - 在制品容器无标识
+  - 标识信息不完整（如缺少品名、批次、状态）
+  - 待处理物料与正常物料混放
+  - 标识脱落或模糊不清
+  - 不合格品无醒目标识
+recommended_actions:
+  - 查证: 在制品容器无标识 — 现场立即整改
+  - 查证: 待处理物料与正常物料混放 — 评估混淆风险
+  - 查证: 不合格品无醒目标识 — 追溯是否被误用
+output_template:
+  status: PASS / FAIL
+  reason: ""
+  risk_level: Medium
+  laws:
+    - REG-GB-14881
+    - REG-FOOD-SAFETY-LAW
+  recommendation: ""
