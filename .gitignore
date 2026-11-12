@@ -38,3 +38,10 @@ references/**/*.txt
 
 # 同步脚本产生的临时目录
 .tmp/
+
+# 例外：参考资料库整库入库（含 PDF）
+!references/监管文献/**/*.pdf
+!references/食品领域法规标准/**/*.pdf
+
+# 超大演示文件不入库（本地存档：D:\MyAgents-reference\）
+references/食品领域法规标准/**/*.pptx
