@@ -109,6 +109,8 @@ function Invoke-Push {
         }
         Write-Host "待提交改动:"
         $changes | ForEach-Object { Write-Host "  $_" }
+        # 同步时间在提交前写入，避免推送后又留下未提交改动
+        Save-Upstream "synced"
         git -C $Root add -A
         git -C $Root commit -m $Message
         if ($LASTEXITCODE -ne 0) { throw "提交失败。" }
@@ -125,7 +127,6 @@ function Invoke-Push {
 
     if ($LASTEXITCODE -ne 0) { throw "推送失败：检查远端地址与认证方式。" }
 
-    Save-Upstream "synced"
     Write-Host "已推送: $((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))"
 }
 
