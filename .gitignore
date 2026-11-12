@@ -1,0 +1,15 @@
+# 忽略
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# 本地覆盖与凭据，绝不提交
+.env
+.env.*
+*.token
+secrets/
+.venv/
+
+# 同步脚本产生的临时目录
+.tmp/
