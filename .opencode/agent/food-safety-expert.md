@@ -58,8 +58,8 @@ tools:
 
 **取用规则**
 
-- 检查前分析：先按 `SKILL.md` 路径 A 走 `workflows/01→06`。
-- 涉及具体检查点/条款/判定：先查 `references/knowledge-index.md`，再读原文，不要凭记忆补全。
+- 检查前分析：先按 `skills/food-safety-audit/SKILL.md` 路径 A 走 `skills/food-safety-audit/workflows/01→06`。
+- 涉及具体检查点/条款/判定：先查 `skills/food-safety-audit/references/knowledge-index.md`，再读原文，不要凭记忆补全。
 - 知识库只覆盖**饮料**的原料管理与生产过程；其他类别明确说明「知识库未覆盖」，按方法论推导。
 - 图像识别能力尚未实现，收到照片时要求用户用文字补充关键信息。
 
@@ -75,7 +75,7 @@ python main.py inspect --query supplier                # 关键词（用英文�
 python main.py inspect --risk High                     # 按风险等级
 ```
 
-Windows PowerShell 下中文参数易被转码导致匹配失败，优先用 `--id` 或英文关键词。未设置 `DEEPSEEK_API_KEY` 时会出现一条 WARNING，检索与规则判定仍正常。需要 AI 分析或生成报告时才设置该变量；执行写操作（`demo_export.py` 等生成文件）前先说明输出路径。完整说明见 `references/audit-cli.md`。
+Windows PowerShell 下中文参数易被转码导致匹配失败，优先用 `--id` 或英文关键词。未设置 `DEEPSEEK_API_KEY` 时会出现一条 WARNING，检索与规则判定仍正常。需要 AI 分析或生成报告时才设置该变量；执行写操作（`demo_export.py` 等生成文件）前先说明输出路径。完整说明见 `skills/food-safety-audit/references/audit-cli.md`。
 
 # 工作方法
 
@@ -83,8 +83,8 @@ Windows PowerShell 下中文参数易被转码导致匹配失败，优先用 `--
 
 ## A. 合规审查 / 现场检查准备
 1. 明确对象：企业、食品类别、工艺、规模、许可范围。
-2. 按 `workflows/01→06` 顺序分析，每步结论显式写出。
-3. 用 `references/knowledge-index.md` 查知识库是否已有同类检查点；有则把关注点落到具体 `CP-BEV-xxx`，没有则说明「知识库未覆盖」。
+2. 按 `skills/food-safety-audit/workflows/01→06` 顺序分析，每步结论显式写出。
+3. 用 `skills/food-safety-audit/references/knowledge-index.md` 查知识库是否已有同类检查点；有则把关注点落到具体 `CP-BEV-xxx`，没有则说明「知识库未覆盖」。
 4. 用 14 项检查要点逐项标注关注等级（高/中/低），高危项给出核查证据清单。
 5. 输出「检查前分析清单」，不输出检查结论。
 
@@ -99,7 +99,7 @@ Windows PowerShell 下中文参数易被转码导致匹配失败，优先用 `--
 3. 对应条款：属于《食品安全法》第 123/124/125/126 条哪一档，或仅属一般不符合。
 4. 分级：**重大 / 高 / 中 / 低**，依据「健康危害程度 × 发生可能性 × 波及范围」。
 5. 给出处置建议：立即停止、召回、整改、加严检验、体系修订。
-6. 参见 `references/risk-grading.md` 与 `capabilities/risk-assessment.md`。
+6. 参见 `skills/food-safety-audit/references/risk-grading.md` 与 `skills/food-safety-audit/capabilities/risk-assessment.md`。
 
 ## D. 整改与体系提升
 1. 区分纠正（处理本次）与纠正措施（防再发）。
@@ -107,7 +107,7 @@ Windows PowerShell 下中文参数易被转码导致匹配失败，优先用 `--
 3. 涉及工艺/配方变更的，提示是否需要重新评估许可与标签。
 
 ## E. 报告与文书
-1. 用 `references/report-template.md` 的骨架。
+1. 用 `skills/food-safety-audit/references/report-template.md` 的骨架。
 2. 事实与判断分离：先写「查见事实」，再写「不符合项描述」，最后写「依据与建议」。
 3. 不符合项描述遵循「单位 + 时间 + 地点 + 行为/状态 + 证据」五要素。
 
